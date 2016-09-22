@@ -49,35 +49,32 @@
   <?php
     $dir = opendir(".");
     $files = array();
+    $blacklist = array(".", "..");
+    $blacklist_filename = ".blacklist";
+    $blacklist_path = dirname(__FILE__) . DIRECTORY_SEPARATOR . "{$blacklist_filename}";
 
-    function passes_blacklist($name) {
-      $passes = true;
-      $blacklist = array(
-        ".",
-        "..",
-        "favicon.ico",
-        "index.php",
-        ".DS_Store",
-        "aquarium-website"
-      );
+    // Append directories in the custom .blacklist file.
+    if (file_exists($blacklist_path)) {
+      $fp = fopen($blacklist_path, "r") or die("Unable to open custom blacklist\n");
 
-      foreach ($blacklist as $bl) {
-        if ($name == $bl)
-          $passes = false;
-      }
+      $custom_blacklist = explode(PHP_EOL, fread($fp, filesize($blacklist_path)));
+      $blacklist = array_merge($blacklist, $custom_blacklist);
 
-      return $passes;
+      fclose($fp);
+    } else {
+      echo "no blacklist";
     }
 
+    // Read all the subdirectories in the current directory.
     while (($file=readdir($dir)) !== false) {
-      if (passes_blacklist($file))
-      {
+      if (passes_blacklist($file, $blacklist) AND is_dir($file)) {
         array_push($files, $file);
       }
     }
     closedir($dir);
     sort($files);
 
+    // Make <dt>s if there are any subdirectories.
     if (sizeof($files) > 0) {
       echo "<dl>";
 
@@ -88,6 +85,18 @@
       echo "</dt>";
     } else {
       echo "No projects found.";
+    }
+
+    function passes_blacklist($name, $blacklist) {
+      $passes = true;
+
+      foreach ($blacklist as $bl) {
+        if ($name == $bl) {
+          $passes = false;
+        }
+      }
+
+      return $passes;
     }
   ?>
 
