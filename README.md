@@ -4,6 +4,8 @@ Have a bunch of web projects in your ~/Sites (or other-OS equivalent)? Just need
 
 Just put `git clone` this project into your web project root, make sure your local web server is turned on, and go to `http://localhost` in a browser.
 
+_Note: if you want to use a version that loads sites into an iframe, load up `http://localhost/index_menu.php` instead._
+
 ## Configuration
 
 **Localhost Index** already excludes anything that isn't a directory (and the usual `.` and `..`), but it can also take a custom list of directories to exclude when enumerating. Just make a ".blacklist" file in the same directory and it will skip anything in it.
