@@ -15,7 +15,7 @@
       font-size: 3em;
       line-height: 1.2em;
       margin: 0;
-      padding: 10px;
+      padding: 8px 4px 2px 8px;
       text-transform: uppercase;
     }
     dl {
@@ -32,7 +32,7 @@
       color: #f2f2f2;
       display: block;
       font-size: 2em;
-      padding: 10px;
+      padding: 12px 10px 10px;
       text-decoration: none;
       text-transform: uppercase;
     }
