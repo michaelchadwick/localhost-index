@@ -18,6 +18,10 @@
       padding: 8px 4px 2px 8px;
       text-transform: uppercase;
     }
+    h1 a, h1 a:active, h1:visited {
+      color: #78bddb;
+      text-decoration: none;
+    }
     #mode_switcher {
       background: #444;
       padding: 5px 10px;
@@ -86,7 +90,7 @@
 </head>
 <body>
 
-  <h1>Localhost Projects</h1>
+  <h1><a href="http://localhost">Localhost Projects</a></h1>
   <div id="mode_switcher"><a href="index.php">standard version</a></div>
 
   <aside id="menu">
