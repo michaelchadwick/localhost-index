@@ -3,7 +3,15 @@
   <title>Localhost Index</title>
   <link rel="stylesheet" type="text/css" href="index.css">
   <script type="text/javascript">
-    function load_url(url) {
+    function load_url(url, id) {
+      var dt = document.getElementById(id);
+      var links = document.querySelectorAll("dt a");
+
+      for (var i = 0; i<links.length; i++) {
+        links[i].classList.remove("selected");
+      }
+
+      dt.className += " selected";
       document.getElementById("site_contents").src=url;
     }
   </script>
@@ -14,7 +22,7 @@
 
     <div id="main">
       <?php
-        if (isset($_GET['iframe'])) {
+        if (isset($_GET['iframe']) && $_GET['iframe'] == 1) {
           $useIframe = true;
           ?>
         <aside id="menu">

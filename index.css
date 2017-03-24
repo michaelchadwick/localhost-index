@@ -8,25 +8,30 @@ body {
   padding: 0;
 }
 #wrap {
+  margin: 0;
   min-height: 100%;
 }
 #main {
+  margin: 0;
   overflow: auto;
-	padding-bottom: 20px;
 }
 footer#mode_switcher {
   background: #444;
-  font-size: 0.75em;
-  clear: both;
+  background: linear-gradient(270deg, #444, #8c8d8d);
+  font-size: 12px;
+  height: 25px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
   height: 20px;
-  position: relative;
-  margin-top: -20px;
-  padding: 0;
+  padding: 5px 0 0;
   text-align: right;
   width: 100%;
 }
 footer#mode_switcher a {
   color: #eee;
+  display: block;
+  padding-right: 7px;
 }
 
 a:hover {
@@ -36,7 +41,7 @@ h1, h2 {
   color: #eee;
   display: block;
   font-size: 24px;
-  line-height: 0.5em;
+  line-height: 12px;
   margin: 0;
   padding: 8px 4px 2px 4px;
   text-transform: uppercase;
@@ -56,7 +61,7 @@ h2 {
   background: #333;
   display: block;
   font-size: 18px;
-  line-height: 1em;
+  line-height: 18px;
   padding: 6px;
 }
 aside {
@@ -90,34 +95,41 @@ dt {
 }
 dt a {
   background: #296a86;
+  background: linear-gradient(90deg, #296a86, #1e5c77);
   border-bottom: 2px solid #111;
   color: #f2f2f2;
   display: block;
-  font-size: 2em;
+  font-size: 1.5em;
   padding: 12px 10px 10px 6px;
   text-decoration: none;
   text-transform: uppercase;
 }
+dt a.selected {
+  background: #000;
+  background: linear-gradient(270deg, #000000, #4f4f4f);
+  color: #fff;
+}
 dt a:hover {
   background: #b3d3e0;
+  background: linear-gradient(90deg, #b3d3e0, #7baabe);
   color: #242424;
 }
 
 @media (min-width: 768px) {
   dt {
-    font-size: 1.2vw;
+    font-size: 1.4vw;
   }
   dt a {
     padding-left: 10px;
   }
   h1 {
-    font-size: 3em;
-    line-height: 1em;
-    padding: 6px 6px 4px;
+    font-size: 36px;
+    line-height: 24px;
+    padding: 10px 6px 4px 8px;
   }
   h2 {
     font-size: 2vw;
-    line-height: 0.8em;
+    line-height: 10px;
     padding: 12px 10px 10px;
   }
 }

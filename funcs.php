@@ -34,14 +34,16 @@ function make_dir_links($useIframe = false) {
   if (sizeof($files) > 0) {
     echo "<h2>Localhost Projects</h2>";
     echo "<dl>";
-
+    $i = 0;
     foreach ($files as $file) {
+      $id = "dir_" . $i;
       if ($useIframe) {
-        $html = "<dt><a onclick='load_url(\"http://$file\")'>$file</a></dt>";
+        $html = "<dt><a id='" . $id . "' onclick='load_url(\"http://" . $file . "\", this.id)'>$file</a></dt>";
       } else {
         $html = "<dt><a href='http://$file'>$file</a></dt>";
       }
       echo $html;
+      $i++;
     }
 
     echo "</dl>";
@@ -72,14 +74,17 @@ function make_port_links($useIframe = false, $checkPorts = false) {
     if ($ports) {
       echo "<h2>Localhost Web Ports</h2>";
       echo "<dl>";
+      $i = 0;
       foreach ($ports as $port) {
         if ($port != "") {
+          $id = "port_" . $i;
           if ($useIframe) {
-            $html = "<dt><a onclick='load_url(\"http://localhost:$port\")'>localhost:$port</a></dt>";
+            $html = "<dt><a id='" . $id . "' onclick='load_url(\"http://localhost:" . $port . "\", this.id)'>localhost:$port</a></dt>";
           } else {
-            $html = "<dt><a href='http://localhost:$port'>localhost:$port</a></dt>";
+            $html = "<dt><a id='" . $id . "' href='http://localhost:$port'>localhost:$port</a></dt>";
           }
           echo $html;
+          $i++;
         }
       }
       echo "</dl>";
