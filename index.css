@@ -1,14 +1,38 @@
+html, body {
+  height: 100%;
+}
 body {
   font-family: Consolas, monospace;
   font-size: 16px;
   margin: 0;
   padding: 0;
 }
+#wrap {
+  min-height: 100%;
+}
+#main {
+  overflow: auto;
+	padding-bottom: 20px;
+}
+footer#mode_switcher {
+  background: #444;
+  font-size: 0.75em;
+  clear: both;
+  height: 20px;
+  position: relative;
+  margin-top: -20px;
+  padding: 0;
+  text-align: right;
+  width: 100%;
+}
+footer#mode_switcher a {
+  color: #eee;
+}
+
 a:hover {
   cursor: pointer;
 }
 h1, h2 {
-  background: #333;
   color: #eee;
   display: block;
   font-size: 24px;
@@ -16,6 +40,10 @@ h1, h2 {
   margin: 0;
   padding: 8px 4px 2px 4px;
   text-transform: uppercase;
+}
+h1 {
+  background: #222;
+  border-bottom: 2px solid #000;
 }
 h1 a, h1 a:active, h1:visited {
   color: #78bddb;
@@ -25,19 +53,11 @@ h1 a:hover {
   color: #b3d3e0;
 }
 h2 {
+  background: #333;
   display: block;
   font-size: 18px;
   line-height: 1em;
   padding: 6px;
-}
-#mode_switcher {
-  background: #444;
-  font-size: 0.75em;
-  padding: 2px 5px;
-  text-align: right;
-}
-#mode_switcher a {
-  color: #eee;
 }
 aside {
   background: #595959;
@@ -82,6 +102,7 @@ dt a:hover {
   background: #b3d3e0;
   color: #242424;
 }
+
 @media (min-width: 768px) {
   dt {
     font-size: 1.2vw;
