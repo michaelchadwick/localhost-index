@@ -36,8 +36,8 @@ function make_dir_links($useIframe = false) {
   sort($files);
 
   // Make <dt>s if there are any subdirectories.
+  echo "<h2>Localhost Projects</h2>";
   if (sizeof($files) > 0) {
-    echo "<h2>Localhost Projects</h2>";
     echo "<dl>";
     $i = 0;
     foreach ($files as $file) {
@@ -53,7 +53,7 @@ function make_dir_links($useIframe = false) {
 
     echo "</dl>";
   } else {
-    echo "No projects found.";
+    echo "<article><p>No projects found.</p></article>";
   }
 }
 
@@ -71,8 +71,8 @@ function make_port_links($useIframe = false, $checkPorts = false) {
     $ports = explode("\n", shell_exec("lsof -i -n -P | grep 'httpd\|vpnkit\|java\|nc' | grep LISTEN | egrep -o -E ':[0-9]{2,5}' | cut -f2- -d: | sort -n | uniq"));
 
     // Make <dt>s if there are any ports
+    echo "<h2>Localhost Web Ports</h2>";
     if ($ports) {
-      echo "<h2>Localhost Web Ports</h2>";
       echo "<dl>";
       $i = 0;
       foreach ($ports as $port) {
@@ -88,6 +88,8 @@ function make_port_links($useIframe = false, $checkPorts = false) {
         }
       }
       echo "</dl>";
+    } else {
+      echo "<article><p>No web ports found.</p></article>";
     }
   }
 }

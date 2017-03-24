@@ -15,6 +15,9 @@ body {
   margin: 0;
   overflow: auto;
 }
+article {
+  padding: 10px 20px;
+}
 footer#mode_switcher {
   background: #444;
   background: linear-gradient(270deg, #444, #8c8d8d);
