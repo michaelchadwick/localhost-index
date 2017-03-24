@@ -1,29 +1,34 @@
 <?php
 /**
- * Make links to all subdirectories in the current directory
+ * Make Directory Links
+ *
+ * Check the current directory, amassing a list of links to make from subdirectories.
+ * Then it uses that list to make some HTML links and write it to the browser.
+ *
+ * @param boolean $useIframe Should we use an iframe to display link?
  */
 function make_dir_links($useIframe = false) {
   $dir = opendir(".");
   $files = array();
-  $blacklist = array(".", "..");
-  $blacklist_filename = ".blacklist";
-  $blacklist_path = dirname(__FILE__) . DIRECTORY_SEPARATOR . "{$blacklist_filename}";
+  $lhignore = array(".", "..");
+  $lhignore_filename = ".lhignore";
+  $lhignore_path = dirname(__FILE__) . DIRECTORY_SEPARATOR . "{$lhignore_filename}";
 
-  // Append directories in the custom .blacklist file.
-  if (file_exists($blacklist_path)) {
-    $fp = fopen($blacklist_path, "r") or die("Unable to open custom blacklist\n");
+  // Append directories in the custom .lhignore file.
+  if (file_exists($lhignore_path)) {
+    $fp = fopen($lhignore_path, "r") or die("Unable to open custom .lhignore\n");
 
-    $custom_blacklist = explode(PHP_EOL, fread($fp, filesize($blacklist_path)));
-    $blacklist = array_merge($blacklist, $custom_blacklist);
+    $custom_lhignore = explode(PHP_EOL, fread($fp, filesize($lhignore_path)));
+    $lhignore = array_merge($lhignore, $custom_lhignore);
 
     fclose($fp);
   } else {
-    echo "no blacklist";
+    echo "no .lhignore";
   }
 
   // Read all the subdirectories in the current directory.
   while (($file=readdir($dir)) !== false) {
-    if (passes_blacklist($file, $blacklist) AND is_dir($file)) {
+    if (passes_lhignore($file, $lhignore) AND is_dir($file)) {
       array_push($files, $file);
     }
   }
@@ -52,25 +57,20 @@ function make_dir_links($useIframe = false) {
   }
 }
 
-function passes_blacklist($name, $blacklist) {
-  $passes = true;
-
-  foreach ($blacklist as $bl) {
-    if ($name == $bl) {
-      $passes = false;
-    }
-  }
-
-  return $passes;
-}
-
 /**
- * Make links to open ports being listened to that are most likely websites
+ * Make Port Links
+ *
+ * Runs `lsof` on your local machine, looking for open TCP ports from likely suspects.
+ * It then uses that info to make some HTML links and echo it to the browser.
+ *
+ * @param boolean $useIframe Should we use an iframe to display link?
+ * @param boolean $checkPorts Should we check ports at all?
  */
 function make_port_links($useIframe = false, $checkPorts = false) {
   if ($checkPorts) {
     $ports = explode("\n", shell_exec("lsof -i -n -P | grep 'httpd\|vpnkit\|java\|nc' | grep LISTEN | egrep -o -E ':[0-9]{2,5}' | cut -f2- -d: | sort -n | uniq"));
 
+    // Make <dt>s if there are any ports
     if ($ports) {
       echo "<h2>Localhost Web Ports</h2>";
       echo "<dl>";
@@ -90,5 +90,27 @@ function make_port_links($useIframe = false, $checkPorts = false) {
       echo "</dl>";
     }
   }
+}
+
+/**
+ * Passes lhignore
+ *
+ * Checks a subdirectory to make sure it passes the black list, if there is one
+ *
+ * @param string $name Domain name to check
+ * @param array $lhignore Array of domains to check against
+ *
+ * @return boolean $passes Whether the domain name passes or not.
+ */
+function passes_lhignore($name, $lhignore) {
+  $passes = true;
+
+  foreach ($lhignore as $bl) {
+    if ($name == $bl) {
+      $passes = false;
+    }
+  }
+
+  return $passes;
 }
 ?>
