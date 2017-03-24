@@ -40,7 +40,7 @@ a:hover {
 h1, h2 {
   color: #eee;
   display: block;
-  font-size: 24px;
+  font-size: 30px;
   line-height: 12px;
   margin: 0;
   padding: 8px 4px 2px 4px;
@@ -60,9 +60,9 @@ h1 a:hover {
 h2 {
   background: #333;
   display: block;
-  font-size: 18px;
+  font-size: 24px;
   line-height: 18px;
-  padding: 6px;
+  padding: 6px 3px 3px 4px;
 }
 aside {
   background: #595959;
@@ -90,16 +90,13 @@ dl {
   padding: 0;
   width: 100%;
 }
-dt {
-  font-size: 1.3vw;
-}
 dt a {
   background: #296a86;
   background: linear-gradient(90deg, #296a86, #1e5c77);
   border-bottom: 2px solid #111;
   color: #f2f2f2;
   display: block;
-  font-size: 1.5em;
+  font-size: 20px;
   padding: 12px 10px 10px 6px;
   text-decoration: none;
   text-transform: uppercase;
@@ -116,10 +113,8 @@ dt a:hover {
 }
 
 @media (min-width: 768px) {
-  dt {
-    font-size: 1.4vw;
-  }
   dt a {
+    font-size: 24px;
     padding-left: 10px;
   }
   h1 {
@@ -128,8 +123,8 @@ dt a:hover {
     padding: 10px 6px 4px 8px;
   }
   h2 {
-    font-size: 2vw;
-    line-height: 10px;
-    padding: 12px 10px 10px;
+    font-size: 30px;
+    line-height: 20px;
+    padding: 12px 10px 10px 8px;
   }
 }
