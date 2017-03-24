@@ -1,0 +1,102 @@
+body {
+  font-family: Consolas, monospace;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+a:hover {
+  cursor: pointer;
+}
+h1, h2 {
+  background: #333;
+  color: #eee;
+  display: block;
+  font-size: 24px;
+  line-height: 0.5em;
+  margin: 0;
+  padding: 8px 4px 2px 4px;
+  text-transform: uppercase;
+}
+h1 a, h1 a:active, h1:visited {
+  color: #78bddb;
+  text-decoration: none;
+}
+h1 a:hover {
+  color: #b3d3e0;
+}
+h2 {
+  display: block;
+  font-size: 18px;
+  line-height: 1em;
+  padding: 6px;
+}
+#mode_switcher {
+  background: #444;
+  font-size: 0.75em;
+  padding: 2px 5px;
+  text-align: right;
+}
+#mode_switcher a {
+  color: #eee;
+}
+aside {
+  background: #595959;
+  float: left;
+  height: 100%;
+  padding: 0;
+  width: 25%;
+}
+section {
+  background: #828282;
+  float: left;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 75%;
+}
+iframe {
+  height: 100%;
+  width: 100%;
+  scrolling: auto;
+  border-left: 2px solid #444;
+}
+dl {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+dt {
+  font-size: 1.3vw;
+}
+dt a {
+  background: #296a86;
+  border-bottom: 2px solid #111;
+  color: #f2f2f2;
+  display: block;
+  font-size: 2em;
+  padding: 12px 10px 10px 6px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+dt a:hover {
+  background: #b3d3e0;
+  color: #242424;
+}
+@media (min-width: 768px) {
+  dt {
+    font-size: 1.2vw;
+  }
+  dt a {
+    padding-left: 10px;
+  }
+  h1 {
+    font-size: 3em;
+    line-height: 1em;
+    padding: 6px 6px 4px;
+  }
+  h2 {
+    font-size: 2vw;
+    line-height: 0.8em;
+    padding: 12px 10px 10px;
+  }
+}

@@ -1,87 +1,7 @@
 <html>
 <head>
-  <title>Localhost Projects</title>
-  <style type="text/css">
-    body {
-      font-family: Consolas, monospace;
-      font-size: 1em;
-      margin: 0;
-      padding: 0;
-    }
-    h1 {
-      background: #333;
-      color: #eee;
-      display: block;
-      font-size: 2em;
-      line-height: 1em;
-      margin: 0;
-      padding: 8px 4px 2px 8px;
-      text-transform: uppercase;
-    }
-    h1 a, h1 a:active, h1:visited {
-      color: #78bddb;
-      text-decoration: none;
-    }
-    #mode_switcher {
-      background: #444;
-      padding: 5px 10px;
-    }
-    #mode_switcher a {
-      color: #eee;
-    }
-    aside {
-      background: #595959;
-      float: left;
-      height: 100%;
-      padding: 0;
-      width: 25%;
-    }
-    section {
-      background: #828282;
-      float: left;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      width: 75%;
-    }
-    iframe {
-      height: 100%;
-      width: 100%;
-      scrolling: auto;
-    }
-    dl {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-    }
-    dt a {
-      background: #296a86;
-      border-bottom: 3px solid #111;
-      color: #f2f2f2;
-      display: block;
-      font-size: 4vw;
-      padding: 10px 7px 7px;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-    dt a:hover {
-      background: #b3d3e0;
-      color: #242424;
-      cursor: pointer;
-    }
-
-    @media (min-width: 768px) {
-      h1 {
-        font-size: 3em;
-        line-height: 1.2em;
-        padding: 12px 10px 10px;
-      }
-      dt a {
-        font-size: 2em;
-        padding: 14px 10px 10px;
-      }
-    }
-  </style>
+  <title>Localhost Index</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
   <script type="text/javascript">
     function load_url(url) {
       document.getElementById("site_contents").src=url;
@@ -90,11 +10,18 @@
 </head>
 <body>
 
-  <h1><a href="http://localhost">Localhost Projects</a></h1>
+  <h1><a href="http://localhost">Localhost Index</a></h1>
   <div id="mode_switcher"><a href="index.php">standard version</a></div>
 
   <aside id="menu">
   <?php
+  make_dir_links();
+  make_port_links(true);
+  
+  /**
+   * Make links to all subdirectories in the current directory
+   */
+  function make_dir_links() {
     $dir = opendir(".");
     $files = array();
     $blacklist = array(".", "..");
@@ -124,6 +51,7 @@
 
     // Make <dt>s if there are any subdirectories.
     if (sizeof($files) > 0) {
+      echo "<h2>Localhost Projects</h2>";
       echo "<dl>";
 
       foreach ($files as $file) {
@@ -134,18 +62,38 @@
     } else {
       echo "No projects found.";
     }
+  }
 
-    function passes_blacklist($name, $blacklist) {
-      $passes = true;
+  function passes_blacklist($name, $blacklist) {
+    $passes = true;
 
-      foreach ($blacklist as $bl) {
-        if ($name == $bl) {
-          $passes = false;
-        }
+    foreach ($blacklist as $bl) {
+      if ($name == $bl) {
+        $passes = false;
       }
-
-      return $passes;
     }
+
+    return $passes;
+  }
+
+  /**
+   * Make links to open ports being listened to that are most likely websites
+   */
+  function make_port_links($checkPorts = false) {
+    if ($checkPorts) {
+      $ports = explode("\n", shell_exec("lsof -i -n -P | grep 'httpd\|vpnkit\|java\|nc' | grep LISTEN | egrep -o -E ':[0-9]{2,5}' | cut -f2- -d: | sort -n | uniq"));
+
+      if ($ports) {
+        echo "<h2>Localhost Web Ports</h2>";
+        echo "<dl>";
+        foreach ($ports as $port) {
+          if ($port != "")
+            echo "<dt><a onclick='load_url(\"http://localhost:$port\");'>localhost:$port</a></dt>";
+        }
+        echo "</dt>";
+      }
+    }
+  }
   ?>
   </aside>
   <section>
