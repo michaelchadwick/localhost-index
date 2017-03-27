@@ -1,44 +1,20 @@
-html, body {
+html {
   height: 100%;
 }
 body {
+  display: flex;
+  flex-direction: column;
   font-family: Consolas, monospace;
   font-size: 16px;
   margin: 0;
+  min-height: 100%;
   padding: 0;
 }
-#wrap {
-  margin: 0;
-  min-height: 100%;
-}
-#main {
-  margin: 0;
-  overflow: auto;
-}
-article {
-  padding: 10px 20px;
-}
-footer#mode_switcher {
-  background: #444;
-  background: linear-gradient(270deg, #444, #8c8d8d);
-  font-size: 12px;
-  height: 25px;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  height: 20px;
-  padding: 5px 0 0;
-  text-align: right;
-  width: 100%;
-}
-footer#mode_switcher a {
-  color: #eee;
-  display: block;
-  padding-right: 7px;
-}
-
 a:hover {
   cursor: pointer;
+}
+header {
+  width: 100%;
 }
 h1, h2 {
   color: #eee;
@@ -67,10 +43,15 @@ h2 {
   line-height: 21px;
   padding: 6px 3px 3px 4px;
 }
+
+#content {
+  flex: 1;
+}
 aside {
   background: #595959;
   float: left;
   height: 100%;
+  overflow: scroll;
   padding: 0;
   width: 30%;
 }
@@ -78,6 +59,7 @@ section {
   background: #828282;
   float: left;
   height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
   width: 70%;
@@ -86,7 +68,6 @@ iframe {
   height: 100%;
   width: 100%;
   scrolling: auto;
-  border-left: 2px solid #444;
 }
 dl {
   margin: 0;
@@ -94,9 +75,8 @@ dl {
   width: 100%;
 }
 dt a {
-  background: #296a86;
-  background: linear-gradient(90deg, #296a86, #1e5c77);
   border-bottom: 2px solid #111;
+  border-right: 2px solid #444;
   color: #f2f2f2;
   display: block;
   font-size: 0.75em;
@@ -104,22 +84,54 @@ dt a {
   text-decoration: none;
   text-transform: uppercase;
 }
-dt a.selected {
-  background: #000;
-  background: linear-gradient(270deg, #000000, #4f4f4f);
-  color: #fff;
+dt.dir a {
+  background: #296a86;
+  background: linear-gradient(90deg, #296a86, #1e5c77);
+}
+dt.port a {
+  background: #297b86;
+  background: linear-gradient(270deg, #297b86, #1e776a);
 }
 dt a:hover {
+  color: #242424;
+}
+dt.dir a:hover {
   background: #b3d3e0;
   background: linear-gradient(90deg, #b3d3e0, #7baabe);
-  color: #242424;
+}
+dt.port a:hover {
+  background: #b3d3e0;
+  background: linear-gradient(90deg, #b3e0d2, #7bbeac);
+}
+dt a.selected {
+  color: #fff;
+}
+dt a.selected:after {
+  content: ' \2713';
+}
+dt.dir a.selected {
+  background: #000;
+  background: linear-gradient(90deg, #153746, #333);
+}
+dt.port a.selected {
+  background: #000;
+  background: linear-gradient(90deg, #123c33, #333);
+}
+
+footer {
+  background: #444;
+  background: linear-gradient(270deg, #444, #8c8d8d);
+  clear: both;
+  font-size: 12px;
+  padding: 5px 0 0;
+  text-align: right;
+  width: 100%;
+}
+footer a {
+  color: #eee;
 }
 
 @media (min-width: 768px) {
-  dt a {
-    font-size: 24px;
-    padding-left: 10px;
-  }
   h1 {
     font-size: 36px;
     line-height: 24px;
@@ -129,5 +141,9 @@ dt a:hover {
     font-size: 30px;
     line-height: 27px;
     padding: 8px 10px 4px 8px;
+  }
+  dt a {
+    font-size: 24px;
+    padding-left: 10px;
   }
 }

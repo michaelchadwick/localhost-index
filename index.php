@@ -17,37 +17,37 @@
   </script>
 </head>
 <body>
-  <div id="wrap">
+  <header>
     <h1><a href="http://localhost">Localhost Index</a></h1>
+  </header>
 
-    <div id="main">
-      <?php
-        if (isset($_GET['iframe']) && $_GET['iframe'] == 1) {
-          $useIframe = true;
-          ?>
-        <aside id="menu">
-          <?php
-        } else {
-          $useIframe = false;
-        }
+  <div id="content">
+    <?php
+      if (isset($_GET['iframe']) && $_GET['iframe'] == 1) {
+        $useIframe = true;
+        ?>
+      <aside id="menu">
+        <?php
+      } else {
+        $useIframe = false;
+      }
 
-        include("funcs.php");
-        make_dir_links($useIframe);
-        make_port_links($useIframe, true);
+      include("funcs.php");
+      make_dir_links($useIframe);
+      make_port_links($useIframe, true, false);
 
-        if ($useIframe) {
-          ?>
-      </aside>
-      <section>
-        <iframe id="site_contents" frameborder="0" src=""></iframe>
-      </section>
-      <?php
-        }
-      ?>
-    </div><!-- end main -->
-  </div><!-- end wrap -->
+      if ($useIframe) {
+        ?>
+    </aside>
+    <section>
+      <iframe id="site_contents" frameborder="0" src=""></iframe>
+    </section>
+    <?php
+      }
+    ?>
+  </div><!-- end content -->
 
-  <footer id="mode_switcher">
+  <footer>
     <?php if ($useIframe) { ?>
     <a href="?iframe=0">standard version</a>
     <?php } else { ?>

@@ -43,9 +43,9 @@ function make_dir_links($useIframe = false) {
     foreach ($files as $file) {
       $id = "dir_" . $i;
       if ($useIframe) {
-        $html = "<dt><a id='" . $id . "' onclick='load_url(\"http://" . $file . "\", this.id)'>$file</a></dt>";
+        $html = "<dt class='dir'><a id='" . $id . "' onclick='load_url(\"http://" . $file . "\", this.id)'>$file</a></dt>";
       } else {
-        $html = "<dt><a href='http://$file'>$file</a></dt>";
+        $html = "<dt class='dir'><a href='http://$file'>$file</a></dt>";
       }
       echo $html;
       $i++;
@@ -65,10 +65,12 @@ function make_dir_links($useIframe = false) {
  *
  * @param boolean $useIframe Should we use an iframe to display link?
  * @param boolean $checkPorts Should we check ports at all?
+ * @param boolean $useFilter Should we use a process filter?
  */
-function make_port_links($useIframe = false, $checkPorts = false) {
+function make_port_links($useIframe = false, $checkPorts = false, $useFilter = false) {
   if ($checkPorts) {
-    $ports = explode("\n", shell_exec("lsof -i -n -P | grep 'httpd\|vpnkit\|java\|nc' | grep LISTEN | egrep -o -E ':[0-9]{2,5}' | cut -f2- -d: | sort -n | uniq"));
+    $filter = $useFilter ? " | grep 'httpd\|vpnkit\|java\|nc'" : "";
+    $ports = explode("\n", shell_exec("lsof -i -n -P" . $filter . " | grep LISTEN | egrep -o -E ':[0-9]{2,5}' | cut -f2- -d: | sort -n | uniq"));
 
     // Make <dt>s if there are any ports
     echo "<h2>Localhost Web Ports</h2>";
@@ -79,9 +81,9 @@ function make_port_links($useIframe = false, $checkPorts = false) {
         if ($port != "") {
           $id = "port_" . $i;
           if ($useIframe) {
-            $html = "<dt><a id='" . $id . "' onclick='load_url(\"http://localhost:" . $port . "\", this.id)'>localhost:$port</a></dt>";
+            $html = "<dt class='port'><a id='" . $id . "' onclick='load_url(\"http://localhost:" . $port . "\", this.id)'>localhost:$port</a></dt>";
           } else {
-            $html = "<dt><a id='" . $id . "' href='http://localhost:$port'>localhost:$port</a></dt>";
+            $html = "<dt class='port'><a id='" . $id . "' href='http://localhost:$port'>localhost:$port</a></dt>";
           }
           echo $html;
           $i++;
