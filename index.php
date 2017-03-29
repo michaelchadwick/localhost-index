@@ -24,6 +24,7 @@
   <div id="content">
     <?php
       if (isset($_GET['iframe']) && $_GET['iframe'] == 1) {
+        header('X-Frame-Options: GOFORIT');
         $useIframe = true;
         ?>
       <aside id="menu">
