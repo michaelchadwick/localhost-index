@@ -78,7 +78,7 @@ function make_port_links($useIframe = false, $checkPorts = false, $useFilter = f
       echo "<dl>";
       $i = 0;
       foreach ($ports as $port) {
-        if ($port != "") {
+        if ($port != "" && $port != $_SERVER['SERVER_PORT']) {
           $id = "port_" . $i;
           if ($useIframe) {
             $html = "<dt class='port'><a id='" . $id . "' onclick='load_url(\"http://localhost:" . $port . "\", this.id)'>localhost:$port</a></dt>";
