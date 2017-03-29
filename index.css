@@ -2,6 +2,7 @@ html {
   height: 100%;
 }
 body {
+  background: #777;
   display: flex;
   flex-direction: column;
   font-family: Consolas, monospace;
@@ -45,13 +46,16 @@ h2 {
 }
 
 #content {
+  border-bottom: 2px solid #333;
   flex: 1;
 }
+article {
+  padding: 3px 15px;
+}
 aside {
-  background: #595959;
   float: left;
   height: 100%;
-  overflow: scroll;
+  overflow: auto;
   padding: 0;
   width: 30%;
 }
@@ -75,7 +79,6 @@ dl {
 }
 dt a {
   border-bottom: 2px solid #111;
-  border-right: 2px solid #444;
   color: #f2f2f2;
   display: block;
   font-size: 0.75em;
@@ -119,15 +122,21 @@ dt.port a.selected {
 
 footer {
   background: #444;
-  background: linear-gradient(270deg, #444, #8c8d8d);
+  background: linear-gradient(90deg, #444, #222);
   clear: both;
   font-size: 12px;
   padding: 5px 0 0;
   text-align: right;
   width: 100%;
 }
-footer a {
+footer span {
+  display: block;
+  position: relative;
+  right: 5px;
+}
+footer span a {
   color: #eee;
+  text-decoration: none;
 }
 
 @media (min-width: 768px) {
