@@ -34,7 +34,7 @@
 
       include("funcs.php");
       make_dir_links($useIframe);
-      make_port_links($useIframe, true, false);
+      make_port_links($useIframe, true, true);
 
       if ($useIframe) {
         ?>
@@ -49,9 +49,9 @@
 
   <footer>
     <?php if ($useIframe) { ?>
-    <a href="?iframe=0">standard version</a>
+    <span>[<a href="?iframe=0">standard version</a>]</span>
     <?php } else { ?>
-    <a href="?iframe=1">iframe version</a>
+    <span>[<a href="?iframe=1">iframe version</a>]</span>
     <?php } ?>
   </footer>
 
