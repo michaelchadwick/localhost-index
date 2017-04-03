@@ -42,10 +42,11 @@ function make_dir_links($useIframe = false) {
     $i = 0;
     foreach ($files as $file) {
       $id = "dir_" . $i;
+      $link = "http://" . $file;
       if ($useIframe) {
-        $html = "<dt class='dir'><a id='" . $id . "' onclick='load_url(\"http://" . $file . "\", this.id)'>$file</a></dt>";
+        $html = "<dt class='dir'><a alt='$link' title='$link' id='$id' onclick='load_url(\"" . $link . "\", this.id)'>$file</a></dt>";
       } else {
-        $html = "<dt class='dir'><a href='http://$file'>$file</a></dt>";
+        $html = "<dt class='dir'><a alt='$link' title='$link' href='$link'>$file</a></dt>";
       }
       echo $html;
       $i++;
@@ -80,10 +81,11 @@ function make_port_links($useIframe = false, $checkPorts = false, $useFilter = f
       foreach ($ports as $port) {
         if ($port != "" && $port != $_SERVER['SERVER_PORT']) {
           $id = "port_" . $i;
+          $link = "http://localhost:" . $port;
           if ($useIframe) {
-            $html = "<dt class='port'><a id='" . $id . "' onclick='load_url(\"http://localhost:" . $port . "\", this.id)'>localhost:$port</a></dt>";
+            $html = "<dt class='port'><a alt='$link' title='$link' id='$id' onclick='load_url(\"" . $link . "\", this.id)'>localhost:$port</a></dt>";
           } else {
-            $html = "<dt class='port'><a id='" . $id . "' href='http://localhost:$port'>localhost:$port</a></dt>";
+            $html = "<dt class='port'><a alt='$link' title='$link' id='" . $id . "' href='$link'>localhost:$port</a></dt>";
           }
           echo $html;
           $i++;
