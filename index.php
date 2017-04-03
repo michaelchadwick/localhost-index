@@ -1,3 +1,4 @@
+<?php header('X-Frame-Options: GOFORIT'); ?>
 <html>
 <head>
   <title>Localhost Index</title>
