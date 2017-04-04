@@ -32,10 +32,22 @@
       } else {
         $useIframe = false;
       }
+      
+      if (isset($_GET['portcheck']) && $_GET['portcheck'] == 0) {
+        $usePortCheck = false;
+      } else {
+        $usePortCheck = true;
+      }
+      
+      if (isset($_GET['portfilter']) && $_GET['portfilter'] == 0) {
+        $usePortFilter = false;
+      } else {
+        $usePortFilter = true;
+      }
 
       include("funcs.php");
       make_dir_links($useIframe);
-      make_port_links($useIframe, true, true);
+      make_port_links($useIframe, $usePortCheck, $usePortFilter);
 
       if ($useIframe) {
         ?>

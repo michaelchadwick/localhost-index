@@ -68,9 +68,9 @@ function make_dir_links($useIframe = false) {
  * @param boolean $checkPorts Should we check ports at all?
  * @param boolean $useFilter Should we use a process filter?
  */
-function make_port_links($useIframe = false, $checkPorts = false, $useFilter = false) {
+function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter = false) {
   if ($checkPorts) {
-    $filter = $useFilter ? " | grep 'httpd\|vpnkit\|java\|nc'" : "";
+    $filter = $usePortFilter ? " | grep 'httpd\|vpnkit\|java\|nc'" : "";
     $ports = explode("\n", shell_exec("lsof -i -n -P" . $filter . " | grep LISTEN | egrep -o -E ':[0-9]{2,5}' | cut -f2- -d: | sort -n | uniq"));
 
     // Make <dt>s if there are any ports
