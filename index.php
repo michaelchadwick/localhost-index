@@ -3,62 +3,50 @@
 <head>
   <title>Localhost Index</title>
   <link rel="stylesheet" type="text/css" href="index.css">
-  <script type="text/javascript">
-    function load_url(url, id) {
-      var dt = document.getElementById(id);
-      var links = document.querySelectorAll("dt a");
-
-      for (var i = 0; i<links.length; i++) {
-        links[i].classList.remove("selected");
-      }
-
-      dt.className += " selected";
-      document.getElementById("site_contents").src=url;
-    }
-  </script>
+  <script type="text/javascript" src="index.js"></script>
 </head>
 <body>
   <header>
     <h1><a href="http://localhost">Localhost Index</a></h1>
   </header>
 
-  <div id="content">
-    <?php
-      if (isset($_GET['iframe']) && $_GET['iframe'] == 1) {
-        $useIframe = true;
-        ?>
-      <aside id="menu">
-        <?php
-      } else {
-        $useIframe = false;
-      }
-      
-      if (isset($_GET['portcheck']) && $_GET['portcheck'] == 0) {
-        $usePortCheck = false;
-      } else {
-        $usePortCheck = true;
-      }
-      
-      if (isset($_GET['portfilter']) && $_GET['portfilter'] == 0) {
-        $usePortFilter = false;
-      } else {
-        $usePortFilter = true;
-      }
+  <?php
+    if (isset($_GET['iframe']) && $_GET['iframe'] == 1) {
+      $useIframe = true;
+      ?>
+<aside id="sidebar">
+  <div id="dragbar"></div>
+      <?php
+    } else {
+      $useIframe = false;
+    }
 
-      include("funcs.php");
-      make_dir_links($useIframe);
-      make_port_links($useIframe, $usePortCheck, $usePortFilter);
+    if (isset($_GET['portcheck']) && $_GET['portcheck'] == 0) {
+      $usePortCheck = false;
+    } else {
+      $usePortCheck = true;
+    }
 
-      if ($useIframe) {
-        ?>
-    </aside>
-    <section>
-      <iframe id="site_contents" frameborder="0" src=""></iframe>
-    </section>
-    <?php
-      }
-    ?>
-  </div><!-- end content -->
+    if (isset($_GET['portfilter']) && $_GET['portfilter'] == 0) {
+      $usePortFilter = false;
+    } else {
+      $usePortFilter = true;
+    }
+
+    include("funcs.php");
+    make_dir_links($useIframe);
+    make_port_links($useIframe, $usePortCheck, $usePortFilter);
+
+    if ($useIframe) {
+      ?>
+  </aside>
+
+  <div id="main">
+    <iframe id="site_contents" frameborder="0" src=""></iframe>
+  </div>
+  <?php
+    }
+  ?>
 
   <footer>
     <?php if ($useIframe) { ?>

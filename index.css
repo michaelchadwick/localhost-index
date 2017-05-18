@@ -1,33 +1,29 @@
-html {
+body, html {
   height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 body {
-  display: flex;
-  flex-direction: column;
   font-family: Consolas, monospace;
   font-size: 16px;
-  margin: 0;
-  min-height: 100%;
-  padding: 0;
 }
 a:hover {
   cursor: pointer;
-}
-header {
-  width: 100%;
 }
 h1, h2 {
   color: #eee;
   display: block;
   font-size: 30px;
-  line-height: 12px;
+  line-height: 35px;
   margin: 0;
-  padding: 8px 4px 2px 4px;
+  padding: 0;
   text-transform: uppercase;
 }
 h1 {
-  background: #222;
-  border-bottom: 2px solid #000;
+  background: #444;
+  line-height: 33px;
+  padding: 4px 4px 2px;
 }
 h1 a, h1 a:active, h1:visited {
   color: #78bddb;
@@ -37,97 +33,118 @@ h1 a:hover {
   color: #b3d3e0;
 }
 h2 {
-  background: #333;
+  background: #205081;
+  border-bottom: 3px solid #000;
   display: block;
   font-size: 24px;
   line-height: 21px;
-  padding: 6px 3px 3px 4px;
-}
-
-#content {
-  border-bottom: 2px solid #333;
-  flex: 1;
+  padding: 8px 3px 3px 4px;
 }
 article {
-  padding: 3px 15px;
-}
-aside {
-  background: #777;
-  float: left;
-  height: 100%;
-  overflow: auto;
-  padding: 0;
-  width: 30%;
-}
-section {
-  float: left;
-  height: 100%;
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-  width: 70%;
+  padding: 5px 15px;
 }
 iframe {
   height: 100%;
   width: 100%;
   scrolling: auto;
 }
-dl {
+
+/* page layout elements */
+header {
+  border-bottom: 5px solid #000;
+  border-top: 5px solid #000;
+  height: 38px;
+  width: 100%;
   margin: 0;
   padding: 0;
-  width: 100%;
+  position: absolute;
+  top: 0;
 }
-dt a {
-  border-bottom: 2px solid #111;
-  color: #f2f2f2;
-  display: block;
-  font-size: 0.75em;
-  padding: 12px 10px 10px 6px;
-  text-decoration: none;
-  text-transform: uppercase;
+div#main {
+  float: right;
+  font-size: 24px;
+  position: absolute;
+  top: 48px;
+  right: 0;
+  bottom: 20px;
+  left: 350px;
 }
-dt.dir a {
-  background: #296a86;
-  background: linear-gradient(90deg, #296a86, #1e5c77);
+aside#sidebar {
+  background: #777;
+  bottom: 20px;
+  float: left;
+  height: 100%;
+  overflow-y: hidden;
+  padding: 0;
+  position: absolute;
+  width: 350px;
+  top: 48px;
 }
-dt.port a {
-  background: #297b86;
-  background: linear-gradient(270deg, #297b86, #1e776a);
+  dl {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  dt a {
+    border-bottom: 1px solid #111;
+    color: #f2f2f2;
+    display: block;
+    font-size: 1em;
+    padding: 12px 10px 10px 6px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  dt.dir a {
+    background: #609fbb;
+    background: linear-gradient(90deg, #609fbb, #1e5c77);
+  }
+  dt.port a {
+    background: #609fbb;
+    background: linear-gradient(270deg, #609fbb, #1e776a);
+  }
+  dt a:hover {
+    color: #242424;
+  }
+  dt.dir a:hover {
+    background: #b3d3e0;
+    background: linear-gradient(90deg, #b3d3e0, #7baabe);
+  }
+  dt.port a:hover {
+    background: #b3d3e0;
+    background: linear-gradient(90deg, #b3e0d2, #7bbeac);
+  }
+  dt a.selected {
+    color: #fff;
+  }
+  dt a.selected:after {
+    content: ' \2713';
+  }
+  dt.dir a.selected {
+    background: #000;
+    background: linear-gradient(90deg, #153746, #000);
+  }
+  dt.port a.selected {
+    background: #000;
+    background: linear-gradient(90deg, #123c33, #000);
+  }
+aside div#dragbar {
+  background-color: #000;
+  height: 100%;
+  float: right;
+  width: 3px;
 }
-dt a:hover {
-  color: #242424;
-}
-dt.dir a:hover {
-  background: #b3d3e0;
-  background: linear-gradient(90deg, #b3d3e0, #7baabe);
-}
-dt.port a:hover {
-  background: #b3d3e0;
-  background: linear-gradient(90deg, #b3e0d2, #7bbeac);
-}
-dt a.selected {
-  color: #fff;
-}
-dt a.selected:after {
-  content: ' \2713';
-}
-dt.dir a.selected {
-  background: #000;
-  background: linear-gradient(90deg, #153746, #333);
-}
-dt.port a.selected {
-  background: #000;
-  background: linear-gradient(90deg, #123c33, #333);
-}
-
 footer {
   background: #444;
   background: linear-gradient(90deg, #444, #222);
+  border-top: 5px solid #222;
   clear: both;
   font-size: 12px;
   padding: 5px 0 0;
   text-align: right;
   width: 100%;
+  height: 20px;
+  bottom: 0;
+  position: fixed;
 }
 footer span {
   display: block;
@@ -139,16 +156,30 @@ footer span a {
   text-decoration: none;
 }
 
+.placeholder {
+  font-weight: 500;
+  font-size: 200%;
+  height: 100%;
+  padding: 100px 50px;
+  text-align: center;
+}
+
 @media (min-width: 768px) {
+  header {
+    height: 38px;
+  }
   h1 {
     font-size: 36px;
-    line-height: 24px;
-    padding: 10px 6px 4px 8px;
+    line-height: 27px;
+    padding: 8px 6px 4px 8px;
   }
   h2 {
     font-size: 30px;
     line-height: 27px;
-    padding: 8px 10px 4px 8px;
+    padding: 12px 10px 4px 8px;
+  }
+  aside#sidebar {
+    min-width: 250px;
   }
   dt a {
     font-size: 24px;

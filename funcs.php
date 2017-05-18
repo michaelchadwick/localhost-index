@@ -36,23 +36,23 @@ function make_dir_links($useIframe = false) {
   sort($files);
 
   // Make <dt>s if there are any subdirectories.
-  echo "<h2>Localhost Projects</h2>";
+  echo "\t<h2>Localhost Projects</h2>";
   if (sizeof($files) > 0) {
-    echo "<dl>";
+    echo "\n\t\t<dl>\n";
     $i = 0;
     foreach ($files as $file) {
       $id = "dir_" . $i;
       $link = "http://" . $file;
       if ($useIframe) {
-        $html = "<dt class='dir'><a alt='$link' title='$link' id='$id' onclick='load_url(\"" . $link . "\", this.id)'>$file</a></dt>";
+        $html = "\t\t\t<dt class='dir'><a alt='$link' title='$link' id='$id' onclick='load_url(\"" . $link . "\", this.id)'>$file</a></dt>\n";
       } else {
-        $html = "<dt class='dir'><a alt='$link' title='$link' href='$link'>$file</a></dt>";
+        $html = "\t\t\t<dt class='dir'><a alt='$link' title='$link' href='$link'>$file</a></dt>\n";
       }
       echo $html;
       $i++;
     }
 
-    echo "</dl>";
+    echo "\t\t</dl>\n";
   } else {
     echo "<article><p>No projects found.</p></article>";
   }
@@ -74,24 +74,24 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
     $ports = explode("\n", shell_exec("lsof -i -n -P" . $filter . " | grep LISTEN | egrep -o -E ':[0-9]{2,5}' | cut -f2- -d: | sort -n | uniq"));
 
     // Make <dt>s if there are any ports
-    echo "<h2>Localhost Web Ports</h2>";
+    echo "\t\t<h2>Localhost Web Ports</h2>";
     if ($ports) {
-      echo "<dl>";
+      echo "\n\t\t\t<dl>\n";
       $i = 0;
       foreach ($ports as $port) {
         if ($port != "" && $port != $_SERVER['SERVER_PORT']) {
           $id = "port_" . $i;
           $link = "http://localhost:" . $port;
           if ($useIframe) {
-            $html = "<dt class='port'><a alt='$link' title='$link' id='$id' onclick='load_url(\"" . $link . "\", this.id)'>localhost:$port</a></dt>";
+            $html = "\t\t\t\t<dt class='port'><a alt='$link' title='$link' id='$id' onclick='load_url(\"" . $link . "\", this.id)'>localhost:$port</a></dt>\n";
           } else {
-            $html = "<dt class='port'><a alt='$link' title='$link' id='" . $id . "' href='$link'>localhost:$port</a></dt>";
+            $html = "\t\t\t\t<dt class='port'><a alt='$link' title='$link' id='" . $id . "' href='$link'>localhost:$port</a></dt>\n";
           }
           echo $html;
           $i++;
         }
       }
-      echo "</dl>";
+      echo "\t\t\t</dl>\n";
     } else {
       echo "<article><p>No web ports found.</p></article>";
     }
