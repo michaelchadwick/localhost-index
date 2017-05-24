@@ -1,5 +1,6 @@
 <?php header('X-Frame-Options: GOFORIT'); ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <title>Localhost Index</title>
   <link rel="stylesheet" type="text/css" href="index.css">
