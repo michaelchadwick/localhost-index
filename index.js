@@ -32,7 +32,7 @@ function updateSidebarDisplay(id) {
 function load_url(url, id) {
   var placeholder = document.createElement('div');
   placeholder.className = 'placeholder';
-  placeholder.textContent = 'LOADING...';
+  placeholder.textContent = url + "\nLOADING...";
   document.getElementById('main').appendChild(placeholder);
   var iframe = document.getElementById("site_contents");
   iframe.style.setProperty('display', 'none');
