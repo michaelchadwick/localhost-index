@@ -23,7 +23,7 @@ h1, h2 {
 h1 {
   background: #444;
   line-height: 33px;
-  padding: 4px 4px 2px;
+  padding: 6px 4px 0 6px;
 }
 h1 a, h1 a:active, h1:visited {
   color: #78bddb;
@@ -34,11 +34,11 @@ h1 a:hover {
 }
 h2 {
   background: #205081;
-  border-bottom: 3px solid #000;
+  border-bottom: 2px solid #000;
   display: block;
-  font-size: 24px;
-  line-height: 21px;
-  padding: 8px 3px 3px 4px;
+  font-size: 18px;
+  line-height: 17px;
+  padding: 8px 3px 3px 6px;
 }
 article {
   padding: 5px 15px;
@@ -51,8 +51,7 @@ iframe {
 
 /* page layout elements */
 header {
-  border-bottom: 5px solid #000;
-  border-top: 5px solid #000;
+  border-bottom: 2px solid #000;
   height: 38px;
   width: 100%;
   margin: 0;
@@ -61,13 +60,13 @@ header {
   top: 0;
 }
 div#main {
+  bottom: 20px;
   float: right;
   font-size: 24px;
+  left: 175px;
   position: absolute;
-  top: 48px;
   right: 0;
-  bottom: 20px;
-  left: 350px;
+  top: 40px;
 }
 aside#sidebar {
   background: #777;
@@ -77,8 +76,8 @@ aside#sidebar {
   overflow-y: hidden;
   padding: 0;
   position: absolute;
-  width: 350px;
-  top: 48px;
+  top: 40px;
+  width: 175px;
 }
   dl {
     margin: 0;
@@ -90,7 +89,7 @@ aside#sidebar {
     color: #f2f2f2;
     display: block;
     font-size: 1em;
-    padding: 12px 10px 10px 6px;
+    padding: 8px 10px 6px 6px;
     text-decoration: none;
     text-transform: uppercase;
   }
@@ -131,12 +130,12 @@ aside div#dragbar {
   background-color: #000;
   height: 100%;
   float: right;
-  width: 3px;
+  width: 2px;
 }
 footer {
   background: #444;
   background: linear-gradient(90deg, #444, #222);
-  border-top: 5px solid #222;
+  border-top: 2px solid #222;
   clear: both;
   font-size: 12px;
   padding: 5px 0 0;
@@ -168,21 +167,22 @@ footer span a {
   header {
     height: 38px;
   }
-  h1 {
-    font-size: 36px;
-    line-height: 27px;
-    padding: 8px 6px 4px 8px;
-  }
   h2 {
-    font-size: 30px;
+    font-size: 27px;
     line-height: 27px;
     padding: 12px 10px 4px 8px;
   }
+  div#main {
+    left: 250px;
+  }
   aside#sidebar {
-    min-width: 250px;
+    width: 250px;
+  }
+  dt h2 {
+    font-size: 24px;
   }
   dt a {
     font-size: 24px;
-    padding-left: 10px;
+    padding: 12px 10px 10px;
   }
 }
