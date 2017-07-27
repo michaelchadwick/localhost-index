@@ -7,31 +7,22 @@
   <script type="text/javascript" src="index.js"></script>
 </head>
 <body>
-  <header>
+  <?php
+  $useIframe = (isset($_GET['iframe']) && $_GET['iframe'] == 1) ? true : false;
+  $usePortCheck = (isset($_GET['portcheck']) && $_GET['portcheck'] == 0) ? false : true;
+  $usePortFilter = (isset($_GET['portfilter']) && $_GET['portfilter'] == 0) ? false : true;
+  ?>
+  
+  <header <?php if ($useIframe) echo 'style="position: absolute"'; ?>>
     <h1><a href="http://localhost">Localhost Index</a></h1>
   </header>
 
   <?php
-    if (isset($_GET['iframe']) && $_GET['iframe'] == 1) {
-      $useIframe = true;
-      ?>
-<aside id="sidebar">
-  <div id="dragbar"></div>
-      <?php
-    } else {
-      $useIframe = false;
-    }
-
-    if (isset($_GET['portcheck']) && $_GET['portcheck'] == 0) {
-      $usePortCheck = false;
-    } else {
-      $usePortCheck = true;
-    }
-
-    if (isset($_GET['portfilter']) && $_GET['portfilter'] == 0) {
-      $usePortFilter = false;
-    } else {
-      $usePortFilter = true;
+    if ($useIframe) {
+  ?>
+  <aside id="sidebar">
+    <div id="dragbar"></div>
+  <?php
     }
 
     include("funcs.php");
@@ -39,7 +30,7 @@
     make_port_links($useIframe, $usePortCheck, $usePortFilter);
 
     if ($useIframe) {
-      ?>
+  ?>
   </aside>
 
   <div id="main">
