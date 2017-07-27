@@ -153,6 +153,9 @@ footer span a {
   color: #eee;
   text-decoration: none;
 }
+footer span a:hover {
+  color: #cbdbf2;
+}
 
 .placeholder {
   font-weight: 500;
