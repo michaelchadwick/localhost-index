@@ -3,8 +3,8 @@
 <html lang="en">
 <head>
   <title>Localhost Index</title>
-  <link rel="stylesheet" type="text/css" href="index.css">
-  <script type="text/javascript" src="index.js"></script>
+  <link href="assets/css/index.css" rel="stylesheet" type="text/css">
+  <script src="assets/js/index.js" type="text/javascript"></script>
 </head>
 <body>
   <?php
@@ -34,7 +34,7 @@
   </aside>
 
   <div id="main">
-    <iframe id="site_contents" frameborder="0" src=""></iframe>
+    <iframe id="site_contents" scrolling="no" frameborder="0" src=""></iframe>
   </div>
   <?php
     }

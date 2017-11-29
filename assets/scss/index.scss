@@ -1,55 +1,77 @@
-body, html {
+@import 'colors';
+
+html {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: Consolas, monospace;
   font-size: 16px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
-a:hover {
-  cursor: pointer;
+
+a {
+  &:hover {
+    cursor: pointer;
+  }
 }
-h1, h2 {
+h1 {
+  background: #444;
+  color: #eee;
+  display: block;
+  line-height: 33px;
+  margin: 0;
+  padding: 6px 4px 0 6px;
+  text-transform: uppercase;
+
+  a {
+    color: #78bddb;
+    text-decoration: none;
+
+    &:active {
+      color: #78bddb;
+      text-decoration: none;
+    }
+    &:hover {
+      color: #b3d3e0;
+    }
+  }
+
+  &:visited {
+    color: #78bddb;
+    text-decoration: none;
+  }
+}
+
+h2 {
+  background: #205081;
+  border-bottom: 2px solid #000;
   color: #eee;
   display: block;
   font-size: 30px;
   line-height: 35px;
   margin: 0;
-  padding: 0;
+  padding: 8px 3px 3px 6px;
   text-transform: uppercase;
 }
-h1 {
-  background: #444;
-  line-height: 33px;
-  padding: 6px 4px 0 6px;
-}
-h1 a, h1 a:active, h1:visited {
-  color: #78bddb;
-  text-decoration: none;
-}
-h1 a:hover {
-  color: #b3d3e0;
-}
-h2 {
-  background: #205081;
-  border-bottom: 2px solid #000;
-  display: block;
-  font-size: 18px;
-  line-height: 17px;
-  padding: 8px 3px 3px 6px;
-}
+
 article {
   padding: 5px 15px;
 }
+
 iframe {
   height: 100%;
   width: 100%;
   scrolling: auto;
 }
 
-/* page layout elements */
+// page layout elements
 header {
   border-bottom: 2px solid #000;
   height: 38px;
@@ -58,7 +80,8 @@ header {
   padding: 0;
   top: 0;
 }
-div#main {
+
+#main {
   bottom: 20px;
   float: right;
   font-size: 24px;
@@ -67,7 +90,8 @@ div#main {
   right: 0;
   top: 40px;
 }
-aside#sidebar {
+
+#sidebar {
   background: #777;
   bottom: 20px;
   float: left;
@@ -77,7 +101,7 @@ aside#sidebar {
   position: absolute;
   top: 40px;
   width: 175px;
-}
+
   dl {
     margin: 0;
     padding: 0;
@@ -125,12 +149,15 @@ aside#sidebar {
     background: #000;
     background: linear-gradient(90deg, #123c33, #000);
   }
-aside div#dragbar {
-  background-color: #000;
-  height: 100%;
-  float: right;
-  width: 2px;
+  
+  #dragbar {
+    background-color: #000;
+    height: 100%;
+    float: right;
+    width: 2px;
+  }
 }
+
 footer {
   background: #444;
   background: linear-gradient(90deg, #444, #222);
@@ -143,18 +170,23 @@ footer {
   height: 20px;
   bottom: 0;
   position: fixed;
-}
-footer span {
-  display: block;
-  position: relative;
-  right: 5px;
-}
-footer span a {
-  color: #eee;
-  text-decoration: none;
-}
-footer span a:hover {
-  color: #cbdbf2;
+
+  footer {
+    span {
+      display: block;
+      position: relative;
+      right: 5px;
+    }
+
+    a {
+      color: #eee;
+      text-decoration: none;
+
+      &:hover {
+        color: #cbdbf2;
+      }
+    }
+  }
 }
 
 .placeholder {
@@ -174,17 +206,19 @@ footer span a:hover {
     line-height: 27px;
     padding: 12px 10px 4px 8px;
   }
-  div#main {
+  #main {
     left: 250px;
   }
-  aside#sidebar {
+  #sidebar {
     width: 250px;
   }
-  dt h2 {
-    font-size: 24px;
-  }
-  dt a {
-    font-size: 24px;
-    padding: 12px 10px 10px;
+  dt {
+    h2 {
+      font-size: 24px;
+    }
+    a {
+      font-size: 24px;
+      padding: 12px 10px 10px;
+    }
   }
 }
