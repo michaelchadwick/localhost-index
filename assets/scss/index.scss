@@ -8,8 +8,8 @@ html {
 }
 
 body {
-  font-family: Consolas, monospace;
-  font-size: 16px;
+  font-family: Consolas, sans-serif, monospace;
+  font-size: 18px;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -17,6 +17,8 @@ body {
 }
 
 a {
+  color: $color-default-reverse;
+
   &:hover {
     cursor: pointer;
   }
@@ -26,9 +28,9 @@ h1 {
   background: $h1-color-bg;
   color: $h-color;
   display: block;
-  line-height: 33px;
+  line-height: 27px;
   margin: 0;
-  padding: 6px 4px 0 6px;
+  padding: 8px 4px 8px 6px;
   text-transform: uppercase;
 
   a {
@@ -53,13 +55,13 @@ h1 {
 
 h2 {
   background: $h2-color-bg;
-  border-bottom: 2px solid $color-default;
+  border-bottom: 3px solid $color-default;
   color: $h-color;
   display: block;
-  font-size: 30px;
-  line-height: 35px;
+  font-size: 18px;
+  line-height: 20px;
   margin: 0;
-  padding: 8px 3px 3px 6px;
+  padding: 8px 3px 6px 6px;
   text-transform: uppercase;
 }
 
@@ -76,110 +78,136 @@ iframe {
 // page layout elements
 header {
   border-bottom: 2px solid $color-default;
-  height: 38px;
+  height: 40px;
   margin: 0;
   padding: 0;
   top: 0;
   width: 100%;
 }
 
-#main {
-  bottom: 20px;
-  float: right;
-  font-size: 24px;
-  left: 175px;
-  position: absolute;
-  right: 0;
-  top: 40px;
-}
-
+// list of links to click
 #sidebar {
-  background: $siderbar-color-bg;
+  background: $sidebar-color-bg;
   bottom: 20px;
   float: left;
   height: 100%;
   overflow-y: hidden;
   padding: 0;
   position: absolute;
-  top: 40px;
-  width: 175px;
+  top: 43px;
+  transition: width .5s;
+  width: 180px;
+}
 
-  dl {
-    margin: 0;
-    padding: 0;
-    width: 100%;
+// wrapper for iframe src and contents
+#main {
+  bottom: 20px;
+  float: right;
+  font-size: 24px;
+  left: 180px;
+  position: absolute;
+  right: 0;
+  top: 40px;
+
+  // iframe src
+  #iframe_src {
+    background: darken($h1-color-bg, 10%);
+    bottom: 0;
+    color: $color-default-reverse;
+    float: right;
+    font-size: 10px;
+    height: 20px;
+    left: 0;
+    line-height: 18px;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    top: 3px;
+    transition: width .5s;
   }
 
-  dt {
+  // iframe site contents
+  #site_contents {
+    position: absolute;
+    top: 30px;
+  }
+}
+
+dl {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+dt {
+  a {
+    border-bottom: 1px solid darken($color-default, 10%);
+    color: lighten($color-default-reverse, 5%);
+    display: block;
+    font-size: 18px;
+    padding: 8px 10px 6px 6px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+      color: darken($color-default, 21%);
+    }
+
+    &.selected {
+      color: $color-default-reverse;
+
+      &::after {
+        content: ' \2713';
+      }
+    }
+  }
+
+  &.dir {
     a {
-      border-bottom: 1px solid darken($color-default, .1);
-      color: lighten($color-default-reverse, .05);
-      display: block;
-      font-size: 1em;
-      padding: 8px 10px 6px 6px;
-      text-decoration: none;
-      text-transform: uppercase;
+      background: $dir-a-color;
+      background: linear-gradient(90deg, $dir-a-color, darken($dir-a-color, 20%));
 
       &:hover {
-        color: #242424;
+        background: $dir-a-color-hover;
+        background: linear-gradient(90deg, $dir-a-color-hover, darken($dir-a-color-hover, 20%));
       }
 
       &.selected {
-        color: $color-default-reverse;
-
-        &::after {
-          content: ' \2713';
-        }
-      }
-    }
-
-    &.dir {
-      a {
-        background: #609fbb;
-        background: linear-gradient(90deg, #609fbb, #1e5c77);
-
-        &:hover {
-          background: #b3d3e0;
-          background: linear-gradient(90deg, #b3d3e0, #7baabe);
-        }
-
-        &.selected {
-          background: $color-default;
-          background: linear-gradient(90deg, #153746, $color-default);
-        }
-      }
-    }
-
-    &.port {
-      a {
-        background: #609fbb;
-        background: linear-gradient(270deg, #609fbb, #1e776a);
-
-        &:hover {
-          background: #b3d3e0;
-          background: linear-gradient(90deg, #b3e0d2, #7bbeac);
-        }
-
-        &.selected {
-          background: $color-default;
-          background: linear-gradient(90deg, #123c33, $color-default);
-        }
+        background: $color-default;
+        background: linear-gradient(90deg, $dir-a-color-selected, $color-default);
       }
     }
   }
 
-  #dragbar {
-    background-color: $color-default;
-    float: right;
-    height: 100%;
-    width: 2px;
+  &.port {
+    a {
+      background: $port-a-color;
+      background: linear-gradient(270deg, $port-a-color, darken($port-a-color, 20%));
+
+      &:hover {
+        background: $port-a-color-hover;
+        background: linear-gradient(90deg, $port-a-color-hover, darken($port-a-color-hover, 20%));
+      }
+
+      &.selected {
+        background: $color-default;
+        background: linear-gradient(90deg, $port-a-color-selected, $color-default);
+      }
+    }
   }
+}
+
+#dragbar {
+  background-color: $color-default;
+  float: right;
+  height: 100%;
+  width: 2px;
 }
 
 footer {
   background: $footer-color-bg;
-  background: linear-gradient(90deg, $footer-color-bg, darken($color-default, .2));
-  border-top: 2px solid darken($color-default, .2);
+  background: linear-gradient(90deg, $footer-color-bg, darken($color-default, 20%));
+  border-top: 2px solid darken($color-default, 20%);
   bottom: 0;
   clear: both;
   font-size: 12px;
@@ -189,19 +217,17 @@ footer {
   text-align: right;
   width: 100%;
 
-  footer {
-    span {
-      display: block;
-      position: relative;
-      right: 5px;
-    }
+  span {
+    display: block;
+    position: relative;
+    right: 5px;
 
     a {
       color: $a-color;
       text-decoration: none;
 
       &:hover {
-        color: #cbdbf2;
+        color: $footer-a-color;
       }
     }
   }
@@ -217,13 +243,13 @@ footer {
 
 @media (min-width: 768px) {
   header {
-    height: 38px;
+    height: 40px;
   }
 
   h2 {
-    font-size: 27px;
-    line-height: 27px;
-    padding: 12px 10px 4px 8px;
+    font-size: 24px;
+    line-height: 24px;
+    padding: 12px 10px 10px 8px;
   }
 
   #main {
@@ -234,13 +260,9 @@ footer {
     width: 250px;
 
     dt {
-      h2 {
-        font-size: 24px;
-      }
-
       a {
-        font-size: 24px;
-        padding: 12px 10px 10px;
+        font-size: 20px;
+        padding: 12px 10px 10px 12px;
       }
     }
   }
