@@ -16,7 +16,7 @@ function loadUrl (evt) {
 
   var placeholder = document.createElement('div')
   placeholder.className = 'placeholder'
-  placeholder.textContent = `${url}\nLOADING...`
+  placeholder.textContent = `${url.toUpperCase()}\nLOADING...`
   document.getElementById('main').appendChild(placeholder)
 
   var iframe = document.getElementById('site_contents')

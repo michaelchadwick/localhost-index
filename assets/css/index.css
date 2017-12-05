@@ -24,6 +24,7 @@ h1 {
   line-height: 27px;
   margin: 0;
   padding: 8px 4px 8px 6px;
+  text-align: left;
   text-transform: uppercase; }
   h1 a {
     color: #78bddb;
@@ -42,11 +43,12 @@ h2 {
   border-bottom: 3px solid #000;
   color: #eee;
   display: block;
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 3px;
   line-height: 13px;
   margin: 0;
   padding: 8px 3px 6px 6px;
+  text-align: center;
   text-transform: uppercase; }
 
 article {
@@ -61,6 +63,7 @@ header {
   height: 40px;
   margin: 0;
   padding: 0;
+  text-align: center;
   top: 0;
   width: 100%; }
 
@@ -75,6 +78,11 @@ header {
   top: 43px;
   transition: width .5s;
   width: 180px; }
+  #sidebar h2 {
+    text-align: left; }
+  #sidebar dt a {
+    font-size: 12px;
+    text-align: left; }
 
 #main {
   bottom: 20px;
@@ -86,12 +94,14 @@ header {
   top: 40px; }
   #main #iframe_src {
     background: #2b2b2b;
+    border-bottom: 4px solid #000;
     bottom: 0;
     color: #fff;
     float: right;
-    font-size: 10px;
-    height: 20px;
+    font-size: 14px;
+    height: 17px;
     left: 0;
+    letter-spacing: 1px;
     line-height: 18px;
     padding: 5px;
     position: absolute;
@@ -100,7 +110,7 @@ header {
     transition: width .5s; }
   #main #site_contents {
     position: absolute;
-    top: 30px; }
+    top: 34px; }
 
 dl {
   margin: 0;
@@ -111,9 +121,10 @@ dt a {
   border-bottom: 1px solid black;
   color: white;
   display: block;
-  font-size: 12px;
+  font-size: 20px;
   letter-spacing: 2px;
   padding: 8px 10px 6px 6px;
+  text-align: center;
   text-decoration: none;
   text-transform: uppercase; }
   dt a:hover {
@@ -172,23 +183,34 @@ footer {
         color: #cbdbf2; }
 
 .placeholder {
-  font-size: 200%;
-  font-weight: 500;
+  font-size: 80%;
+  font-weight: 400;
   height: 100%;
-  padding: 100px 50px;
+  padding: 70px 10px;
   text-align: center; }
 
 @media (min-width: 768px) {
   header {
-    height: 40px; }
+    height: 40px;
+    text-align: left; }
   h2 {
     font-size: 24px;
     line-height: 24px;
-    padding: 12px 10px 10px 8px; }
+    padding: 12px 10px 10px 8px;
+    text-align: left; }
   #main {
     left: 250px; }
+    #main #iframe_src {
+      height: 36px; }
+    #main #site_contents {
+      top: 52px; }
   #sidebar {
     width: 250px; }
     #sidebar dt a {
       font-size: 20px;
-      padding: 12px 10px 10px 12px; } }
+      padding: 12px 10px 10px 12px; }
+  dt a {
+    text-align: left; }
+  .placeholder {
+    font-size: 200%;
+    padding: 100px 50px; } }

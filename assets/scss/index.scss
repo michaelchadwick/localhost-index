@@ -31,6 +31,7 @@ h1 {
   line-height: 27px;
   margin: 0;
   padding: 8px 4px 8px 6px;
+  text-align: left;
   text-transform: uppercase;
 
   a {
@@ -58,11 +59,12 @@ h2 {
   border-bottom: 3px solid $color-default;
   color: $h-color;
   display: block;
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 3px;
   line-height: 13px;
   margin: 0;
   padding: 8px 3px 6px 6px;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -82,11 +84,12 @@ header {
   height: 40px;
   margin: 0;
   padding: 0;
+  text-align: center;
   top: 0;
   width: 100%;
 }
 
-// list of links to click
+// iframe sidebar
 #sidebar {
   background: $sidebar-color-bg;
   bottom: 20px;
@@ -98,6 +101,17 @@ header {
   top: 43px;
   transition: width .5s;
   width: 180px;
+
+  h2 {
+    text-align: left;
+  }
+
+  dt {
+    a {
+      font-size: 12px;
+      text-align: left;
+    }
+  }
 }
 
 // wrapper for iframe src and contents
@@ -110,15 +124,16 @@ header {
   right: 0;
   top: 40px;
 
-  // iframe src
   #iframe_src {
     background: darken($h1-color-bg, 10%);
+    border-bottom: 4px solid $color-default;
     bottom: 0;
     color: $color-default-reverse;
     float: right;
-    font-size: 10px;
-    height: 20px;
+    font-size: 14px;
+    height: 17px;
     left: 0;
+    letter-spacing: 1px;
     line-height: 18px;
     padding: 5px;
     position: absolute;
@@ -130,7 +145,7 @@ header {
   // iframe site contents
   #site_contents {
     position: absolute;
-    top: 30px;
+    top: 34px;
   }
 }
 
@@ -140,14 +155,16 @@ dl {
   width: 100%;
 }
 
+// list of links
 dt {
   a {
     border-bottom: 1px solid darken($color-default, 10%);
     color: lighten($color-default-reverse, 5%);
     display: block;
-    font-size: 12px;
+    font-size: 20px;
     letter-spacing: 2px;
     padding: 8px 10px 6px 6px;
+    text-align: center;
     text-decoration: none;
     text-transform: uppercase;
 
@@ -235,27 +252,38 @@ footer {
   }
 }
 
+// loading div
 .placeholder {
-  font-size: 200%;
-  font-weight: 500;
+  font-size: 80%;
+  font-weight: 400;
   height: 100%;
-  padding: 100px 50px;
+  padding: 70px 10px;
   text-align: center;
 }
 
 @media (min-width: 768px) {
   header {
     height: 40px;
+    text-align: left;
   }
 
   h2 {
     font-size: 24px;
     line-height: 24px;
     padding: 12px 10px 10px 8px;
+    text-align: left;
   }
 
   #main {
     left: 250px;
+
+    #iframe_src {
+      height: 36px;
+    }
+
+    #site_contents {
+      top: 52px;
+    }
   }
 
   #sidebar {
@@ -267,5 +295,16 @@ footer {
         padding: 12px 10px 10px 12px;
       }
     }
+  }
+
+  dt {
+    a {
+      text-align: left;
+    }
+  }
+
+  .placeholder {
+    font-size: 200%;
+    padding: 100px 50px;
   }
 }
