@@ -58,8 +58,9 @@ h2 {
   border-bottom: 3px solid $color-default;
   color: $h-color;
   display: block;
-  font-size: 18px;
-  line-height: 20px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  line-height: 13px;
   margin: 0;
   padding: 8px 3px 6px 6px;
   text-transform: uppercase;
@@ -144,7 +145,8 @@ dt {
     border-bottom: 1px solid darken($color-default, 10%);
     color: lighten($color-default-reverse, 5%);
     display: block;
-    font-size: 18px;
+    font-size: 12px;
+    letter-spacing: 2px;
     padding: 8px 10px 6px 6px;
     text-decoration: none;
     text-transform: uppercase;
