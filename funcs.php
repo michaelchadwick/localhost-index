@@ -70,8 +70,10 @@ function make_dir_links($useIframe = false) {
  */
 function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter = false) {
   if ($checkPorts) {
-    $filter = $usePortFilter ? " | grep 'httpd\|vpnkit\|java\|nc\|node\|ng\|php\|ruby'" : "";
-    $ports = explode("\n", shell_exec("lsof -i -n -P" . $filter . " | grep LISTEN | egrep -o -E ':[0-9]{2,5}' | cut -f2- -d: | sort -n | uniq"));
+    $http_services = 'httpd\|vpnkit\|java\|nc\|node\|ng\|php\|ruby\|hugo';
+    $filter = $usePortFilter ? " | grep '" . $http_services . "'" : "";
+    $lsof_cmd = "lsof -i -n -P" . $filter . " | grep LISTEN | egrep -o -E ':[0-9]{2,5}' | cut -f2- -d: | sort -n | uniq";
+    $ports = explode("\n", shell_exec($lsof_cmd));
 
     // Make <dt>s if there are any ports
     echo "\t\t<h2>Ports</h2>";
