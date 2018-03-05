@@ -241,6 +241,12 @@ footer {
     position: relative;
     right: 5px;
 
+    &.toggle-text {
+      bottom: 14px;
+      color: #fff;
+      right: 110px;
+    }
+
     a {
       color: $a-color;
       text-decoration: none;

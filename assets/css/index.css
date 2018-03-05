@@ -176,6 +176,10 @@ footer {
     display: block;
     position: relative;
     right: 5px; }
+    footer span.toggle-text {
+      bottom: 14px;
+      color: #fff;
+      right: 110px; }
     footer span a {
       color: #78bddb;
       text-decoration: none; }

@@ -40,12 +40,38 @@ function updateIframeSrc () {
   document.getElementById('iframe_src').innerText = iframeSrc
 }
 
+function toggleKeyDebug (status, event) {
+  if (status) {
+    var e = event || window.event
+    var ctrl = e.ctrlKey
+    var alt = e.altKey
+    var cmd = e.keyCode === 91
+    var shift = e.shiftKey
+
+    console.log(`keyCode: %d, shift: %s, ctrl: %s, alt: %s, cmd: %s`, e.keyCode, shift, ctrl, alt, cmd)
+  }
+}
+
 function init () {
   var urls = document.querySelectorAll('dt a')
 
   Array.from(urls).forEach(function (a) {
     a.addEventListener('click', loadUrl, false)
   })
+
+  document.onkeyup = function (event) {
+    toggleKeyDebug(false, event)
+
+    if (event.keyCode === 73 && event.ctrlKey && event.altKey) {
+      var path = window.location.search
+      if (path.indexOf('?iframe=1') >= 0) {
+        path = '/'
+      } else {
+        path = '/?iframe=1'
+      }
+      window.location.href = path
+    }
+  }
 }
 
 window.onload = init
