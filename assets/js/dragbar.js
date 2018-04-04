@@ -12,8 +12,8 @@ function dragBarMouseDown (e) {
   e.preventDefault()
   // var mouseStatus = 'mousedown' + i++
   window.addEventListener('mousemove', windowMouseMove, false)
-  console.log('registered mousemove event')
-  console.log('leaving mouseDown')
+  // console.log('registered mousemove event')
+  // console.log('leaving mouseDown')
 }
 
 // update mouse position
@@ -21,22 +21,22 @@ function windowMouseMove (e) {
   position = e.pageX + ', ' + e.pageY
   sidebar = document.getElementById('sidebar').style.width = e.pageX + 2 + 'px'
   main = document.getElementById('main').style.left = e.pageX + 2 + 'px'
-  console.log('sidebar width', sidebar)
-  console.log('main left', main)
-  console.log('mouse position', position)
+  // console.log('sidebar width', sidebar)
+  // console.log('main left', main)
+  // console.log('mouse position', position)
 }
 
 // check for mouseup
 function windowMouseUp (e) {
   clickevent = 'in another mouseUp event' + i++
-  console.log('clickevent', clickevent)
+  // console.log('clickevent', clickevent)
   window.removeEventListener('mousemove', windowMouseMove, false)
-  console.log('unregistered mousemove event')
+  // console.log('unregistered mousemove event')
 }
 
 // entrypoint function
 const init = () => {
-  console.log('dragbar init')
+  // console.log('dragbar init')
   window.addEventListener('mouseup', windowMouseUp, false)
   var dragbar = document.getElementById('dragbar')
   dragbar.addEventListener('mousedown', dragBarMouseDown, false)
