@@ -68,87 +68,6 @@ h2 {
   text-transform: uppercase;
 }
 
-article {
-  padding: 5px 15px;
-}
-
-iframe {
-  height: 100%;
-  //scrolling: auto;
-  width: 100%;
-}
-
-// page layout elements
-header {
-  border-bottom: 2px solid $color-default;
-  height: 40px;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  top: 0;
-  width: 100%;
-}
-
-// iframe sidebar
-#sidebar {
-  background: $sidebar-color-bg;
-  bottom: 20px;
-  float: left;
-  height: 100%;
-  overflow-y: hidden;
-  padding: 0;
-  position: absolute;
-  top: 43px;
-  transition: width .5s;
-  width: 180px;
-
-  h2 {
-    text-align: left;
-  }
-
-  dt {
-    a {
-      font-size: 12px;
-      text-align: left;
-    }
-  }
-}
-
-// wrapper for iframe src and contents
-#main {
-  bottom: 20px;
-  float: right;
-  font-size: 24px;
-  left: 180px;
-  position: absolute;
-  right: 0;
-  top: 40px;
-
-  #iframe_src {
-    background: darken($h1-color-bg, 10%);
-    border-bottom: 4px solid $color-default;
-    bottom: 0;
-    color: $color-default-reverse;
-    float: right;
-    font-size: 14px;
-    height: 17px;
-    left: 0;
-    letter-spacing: 1px;
-    line-height: 18px;
-    padding: 5px;
-    position: absolute;
-    right: 0;
-    top: 3px;
-    transition: width .5s;
-  }
-
-  // iframe site contents
-  #site_contents {
-    position: absolute;
-    top: 34px;
-  }
-}
-
 dl {
   margin: 0;
   padding: 0;
@@ -221,6 +140,87 @@ dt {
   float: right;
   height: 100%;
   width: 2px;
+}
+
+article {
+  padding: 5px 15px;
+}
+
+iframe {
+  height: 100%;
+  //scrolling: auto;
+  width: 100%;
+}
+
+// page layout elements
+header {
+  border-bottom: 2px solid $color-default;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+
+// iframe sidebar
+#sidebar {
+  background: $sidebar-color-bg;
+  bottom: 20px;
+  float: left;
+  height: 100%;
+  overflow-y: hidden;
+  padding: 0;
+  position: absolute;
+  top: 43px;
+  transition: width 0.5s;
+  width: 180px;
+
+  h2 {
+    text-align: left;
+  }
+
+  dt {
+    a {
+      font-size: 12px;
+      text-align: left;
+    }
+  }
+}
+
+// wrapper for iframe src and contents
+#main {
+  bottom: 20px;
+  float: right;
+  font-size: 24px;
+  left: 180px;
+  position: absolute;
+  right: 0;
+  top: 40px;
+
+  #iframe_src {
+    background: darken($h1-color-bg, 10%);
+    border-bottom: 4px solid $color-default;
+    bottom: 0;
+    color: $color-default-reverse;
+    float: right;
+    font-size: 14px;
+    height: 17px;
+    left: 0;
+    letter-spacing: 1px;
+    line-height: 18px;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    top: 3px;
+    transition: width 0.5s;
+  }
+
+  // iframe site contents
+  #site_contents {
+    position: absolute;
+    top: 34px;
+  }
 }
 
 footer {
