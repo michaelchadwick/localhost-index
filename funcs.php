@@ -69,7 +69,13 @@ function make_dir_links($useIframe = false) {
  * @param boolean $useFilter Should we use a process filter?
  */
 function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter = false) {
+  $PORTS_LABELS_FILENAME = 'port_labels.php';
+
   if ($checkPorts) {
+    if (stream_resolve_include_path($PORTS_LABELS_FILENAME)) {
+      include $PORTS_LABELS_FILENAME; // custom port => app name mappings
+    }
+
     $http_services = 'httpd\|vpnkit\|java\|nc\|node\|ng\|php\|ruby\|hugo\|docker\|com.docker\|com.docke';
     $filter = $usePortFilter ? " | grep '" . $http_services . "'" : "";
     $lsof_cmd = "lsof -i -n -P" . $filter . " | grep LISTEN | egrep -o -E ':[0-9]{2,5}' | cut -f2- -d: | sort -n | uniq";
@@ -84,10 +90,11 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
         if ($port != "" && $port != $_SERVER['SERVER_PORT']) {
           $id = "port_" . $i;
           $link = "http://localhost:" . $port;
+          $name = $PORTS_LABELS ? (array_key_exists($port, $PORTS_LABELS) ? " ($PORTS_LABELS[$port])" : '') : '';
           if ($useIframe) {
-            $html = "\t\t\t\t<dt class='port'><a data-url='$link' alt='$link' title='$link' id='$id' href='#'>localhost:$port</a></dt>\n";
+            $html = "\t\t\t\t<dt class='port'><a data-url='$link' alt='$link' title='$link' id='$id' href='#'>:$port$name</a></dt>\n";
           } else {
-            $html = "\t\t\t\t<dt class='port'><a data-url='$link' alt='$link' title='$link' id='" . $id . "' href='$link'>localhost:$port</a></dt>\n";
+            $html = "\t\t\t\t<dt class='port'><a data-url='$link' alt='$link' title='$link' id='" . $id . "' href='$link'>:$port$name</a></dt>\n";
           }
           echo $html;
           $i++;
