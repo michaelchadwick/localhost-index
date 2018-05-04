@@ -18,6 +18,8 @@
     <h1><a href='http://localhost'>Localhost Index</a></h1>
   </header>
 
+  <div id="container">
+
   <?php
     if ($useIframe) {
   ?>
@@ -41,6 +43,8 @@
   <?php
     }
   ?>
+
+  </container>
 
   <footer>
     <?php if ($useIframe) { ?>

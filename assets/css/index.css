@@ -51,12 +51,9 @@ h2 {
   text-align: center;
   text-transform: uppercase; }
 
-article {
-  padding: 5px 15px; }
-
-iframe {
+#container {
   height: 100%;
-  width: 100%; }
+  margin-bottom: 64px; }
 
 header {
   border-bottom: 2px solid #000;
@@ -72,45 +69,16 @@ header {
   bottom: 20px;
   float: left;
   height: 100%;
-  overflow-y: hidden;
   padding: 0;
   position: absolute;
   top: 43px;
-  transition: width .5s;
+  transition: width 0.5s;
   width: 180px; }
   #sidebar h2 {
     text-align: left; }
   #sidebar dt a {
     font-size: 12px;
     text-align: left; }
-
-#main {
-  bottom: 20px;
-  float: right;
-  font-size: 24px;
-  left: 180px;
-  position: absolute;
-  right: 0;
-  top: 40px; }
-  #main #iframe_src {
-    background: #2b2b2b;
-    border-bottom: 4px solid #000;
-    bottom: 0;
-    color: #fff;
-    float: right;
-    font-size: 14px;
-    height: 17px;
-    left: 0;
-    letter-spacing: 1px;
-    line-height: 18px;
-    padding: 5px;
-    position: absolute;
-    right: 0;
-    top: 3px;
-    transition: width .5s; }
-  #main #site_contents {
-    position: absolute;
-    top: 34px; }
 
 dl {
   margin: 0;
@@ -160,6 +128,41 @@ dt.port a {
   height: 100%;
   width: 2px; }
 
+#main {
+  float: right;
+  font-size: 24px;
+  height: 100%;
+  left: 180px;
+  position: absolute;
+  right: 0;
+  top: 43px; }
+  #main #iframe_src {
+    background: #2b2b2b;
+    border-bottom: 4px solid #000;
+    bottom: 0;
+    color: #fff;
+    float: right;
+    font-size: 14px;
+    height: 16px;
+    left: 0;
+    letter-spacing: 1px;
+    line-height: 18px;
+    padding: 6px 5px 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: width 0.5s; }
+  #main #site_contents {
+    position: absolute;
+    top: 30px; }
+
+article {
+  padding: 5px 15px; }
+
+iframe {
+  height: 100%;
+  width: 100%; }
+
 footer {
   background: #444;
   background: linear-gradient(90deg, #444, black);
@@ -187,10 +190,10 @@ footer {
         color: #cbdbf2; }
 
 .placeholder {
-  font-size: 80%;
+  font-size: 4vw;
   font-weight: 400;
   height: 100%;
-  padding: 70px 10px;
+  padding: 50px 10px 0;
   text-align: center; }
 
 @media (min-width: 768px) {
@@ -202,12 +205,16 @@ footer {
     line-height: 24px;
     padding: 12px 10px 10px 8px;
     text-align: left; }
+  #container {
+    margin-bottom: 104px; }
   #main {
     left: 250px; }
     #main #iframe_src {
-      height: 36px; }
+      font-size: 4vh;
+      height: 16px;
+      padding: 15px 10px; }
     #main #site_contents {
-      top: 52px; }
+      top: 49px; }
   #sidebar {
     width: 250px; }
     #sidebar dt a {
