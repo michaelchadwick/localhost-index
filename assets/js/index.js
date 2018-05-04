@@ -11,8 +11,9 @@ function updateSidebarSelection (id) {
 
 // load sites into iframe
 function loadUrl (evt) {
+  evt.preventDefault();
   var url = evt.target.attributes['data-url'].value
-  var id = evt.target.attributes['id'].value
+  var id = evt.target.attributes.id.value
 
   var placeholder = document.createElement('div')
   placeholder.className = 'placeholder'
