@@ -11,29 +11,33 @@ function updateSidebarSelection (id) {
 
 // load sites into iframe
 function loadUrl (evt) {
-  evt.preventDefault();
-  var url = evt.target.attributes['data-url'].value
-  var id = evt.target.attributes.id.value
+  // only disable regular linking if on iframe
+  if (evt.target.dataset.click == 'false') {
+    evt.preventDefault()
 
-  var placeholder = document.createElement('div')
-  placeholder.className = 'placeholder'
-  placeholder.textContent = `${url.toUpperCase()}\nLOADING...`
-  document.getElementById('main').appendChild(placeholder)
+    var url = evt.target.attributes['data-url'].value
+    var id = evt.target.attributes.id.value
 
-  var iframe = document.getElementById('site_contents')
-  iframe.style.setProperty('display', 'none')
-  placeholder.parentNode.insertBefore(iframe, placeholder.nextSibling)
-  iframe.src = url
+    var placeholder = document.createElement('div')
+    placeholder.className = 'placeholder'
+    placeholder.textContent = `${url.toUpperCase()}\nLOADING...`
+    document.getElementById('main').appendChild(placeholder)
 
-  iframe.addEventListener('load', function () {
-    if (placeholder.parentNode) {
-      placeholder.parentNode.removeChild(placeholder)
-    }
-    iframe.style.removeProperty('display')
-  })
+    var iframe = document.getElementById('site_contents')
+    iframe.style.setProperty('display', 'none')
+    placeholder.parentNode.insertBefore(iframe, placeholder.nextSibling)
+    iframe.src = url
 
-  updateSidebarSelection(id)
-  updateIframeSrc()
+    iframe.addEventListener('load', function () {
+      if (placeholder.parentNode) {
+        placeholder.parentNode.removeChild(placeholder)
+      }
+      iframe.style.removeProperty('display')
+    })
+
+    updateSidebarSelection(id)
+    updateIframeSrc()
+  }
 }
 
 function updateIframeSrc () {

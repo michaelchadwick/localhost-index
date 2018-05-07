@@ -1,4 +1,4 @@
-<?php header('X-Frame-Options: GOFORIT'); ?>
+<?php header('X-Frame-Options: ALLOW-FROM http://localhost/'); ?>
 <!DOCTYPE html>
 <html lang='en'>
 <head>
