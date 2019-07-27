@@ -37,17 +37,26 @@ function make_dir_links($useIframe = false) {
 
   // Make <dt>s if there are any subdirectories.
   echo "\t<h2>~/Sites</h2>";
+
   if (sizeof($files) > 0) {
     echo "\n\t\t<dl>\n";
     $i = 0;
+
     foreach ($files as $file) {
       $id = "dir_" . $i;
-      $link = "http://" . $file;
+      $link = "/" . $file;
+
+      $html  = "\t\t\t\t";
+      $html .= "<dt class='port'>";
+
       if ($useIframe) {
-        $html = "\t\t\t<dt class='dir'><a data-url='$link' data-click='false' alt='$link' title='$link' id='$id' href='#'>$file</a></dt>\n";
+        $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' data-click='false' href='#'>$file</a>";
       } else {
-        $html = "\t\t\t<dt class='dir'><a data-url='$link' alt='$link' title='$link' href='$link'>$file</a></dt>\n";
+        $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' href='$link'>$file</a>";
       }
+
+      $html .= "</dt>\n";
+
       echo $html;
       $i++;
     }
@@ -69,13 +78,7 @@ function make_dir_links($useIframe = false) {
  * @param boolean $useFilter Should we use a process filter?
  */
 function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter = false) {
-  $PORTS_LABELS_FILENAME = 'port_labels.php';
-
   if ($checkPorts) {
-    if (stream_resolve_include_path($PORTS_LABELS_FILENAME)) {
-      include $PORTS_LABELS_FILENAME; // custom port => app name mappings
-    }
-
     $http_services = 'httpd\|vpnkit\|java\|nc\|node\|ng\|php\|ruby\|hugo\|docker\|com.docker\|com.docke';
     $filter = $usePortFilter ? " | grep '" . $http_services . "'" : "";
     $lsof_cmd = "lsof -i -n -P" . $filter . " | grep LISTEN | egrep -o -E ':[0-9]{2,5}' | cut -f2- -d: | sort -n | uniq";
@@ -84,18 +87,38 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
     // Make <dt>s if there are any ports
     echo "\t\t<h2>Ports</h2>";
     if ($ports) {
+      $PORTS_LABELS_FILENAME = 'port_labels.php';
+
+      if (stream_resolve_include_path($PORTS_LABELS_FILENAME)) {
+        include $PORTS_LABELS_FILENAME; // custom port => app name mappings
+      }
+
       echo "\n\t\t\t<dl>\n";
       $i = 0;
       foreach ($ports as $port) {
         if ($port != "" && $port != $_SERVER['SERVER_PORT']) {
           $id = "port_" . $i;
           $link = "http://localhost:" . $port;
-          $name = $PORTS_LABELS ? (array_key_exists($port, $PORTS_LABELS) ? " ($PORTS_LABELS[$port])" : '') : '';
-          if ($useIframe) {
-            $html = "\t\t\t\t<dt class='port'><a data-url='$link' data-click='false' alt='$link' title='$link' id='$id' href='#'>:$port$name</a></dt>\n";
-          } else {
-            $html = "\t\t\t\t<dt class='port'><a data-url='$link' alt='$link' title='$link' id='" . $id . "' href='$link'>:$port$name</a></dt>\n";
+          $name = '';
+
+          if (defined('PORTS_LABELS')) {
+            $labels = constant('PORTS_LABELS');
+            if (array_key_exists($port, $labels)) {
+              $name = " ($labels[$port])";
+            }
           }
+
+          $html  = "\t\t\t\t";
+          $html .= "<dt class='port'>";
+
+          if ($useIframe) {
+            $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' data-click='false' href='#'>:$port$name</a>";
+          } else {
+            $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' href='$link'>:$port$name</a>";
+          }
+
+          $html .= "</dt>\n";
+
           echo $html;
           $i++;
         }
@@ -118,14 +141,12 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
  * @return boolean $passes Whether the domain name passes or not.
  */
 function passes_lhignore($name, $lhignore) {
-  $passes = true;
-
   foreach ($lhignore as $bl) {
     if ($name == $bl) {
-      $passes = false;
+      return false;
     }
   }
 
-  return $passes;
+  return true;
 }
 ?>
