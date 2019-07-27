@@ -2,8 +2,8 @@
 /**
  * Make Directory Links
  *
- * Check the current directory, amassing a list of links to make from subdirectories.
- * Then it uses that list to make some HTML links and write it to the browser.
+ * Check current directory, amassing a list of links to make from subdirectories.
+ * Then use that list to make HTML links and write to the browser.
  *
  * @param boolean $useIframe Should we use an iframe to display link?
  */
