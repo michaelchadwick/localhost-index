@@ -1,5 +1,5 @@
 assets/css/*
+testsite*
 .lhignore
 dandelion.yml
-testsite*
 port_labels.php
