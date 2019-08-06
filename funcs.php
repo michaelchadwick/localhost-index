@@ -112,9 +112,9 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
           $html .= "<dt class='port'>";
 
           if ($useIframe) {
-            $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' data-click='false' href='#'>:$port$name</a>";
+            $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' data-click='false' href='#'>:" . $port . $name . "</a>";
           } else {
-            $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' href='$link'>:$port$name</a>";
+            $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' href='$link'>:" . $port . $name . "</a>";
           }
 
           $html .= "</dt>\n";
