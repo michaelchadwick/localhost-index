@@ -1,5 +1,5 @@
 <?php
-  $PORTS_LABELS = [
+  define('PORT_LABELS', [
     'port-number' => 'port-label'
-  ];
+  ]);
 ?>
