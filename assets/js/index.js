@@ -67,7 +67,7 @@ function init () {
   document.onkeyup = function (event) {
     toggleKeyDebug(false, event)
 
-    if (event.keyCode === 73 && event.ctrlKey && event.altKey) {
+    if (event.keyCode === 73 && event.ctrlKey && event.altKey && event.shiftKey) {
       var path = window.location.search
       if (path.indexOf('?iframe=1') >= 0) {
         path = '/'

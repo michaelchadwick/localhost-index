@@ -52,7 +52,7 @@
     <?php } else { ?>
     <span>[<a href='?iframe=1'>switch to iframe</a>]</span>
     <?php } ?>
-    <span class='toggle-text'>(ctrl-alt-i to toggle)</span>
+    <span class='toggle-text'>(ctrl+shift+alt+i to toggle)</span>
   </footer>
 
 </body>

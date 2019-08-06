@@ -8,7 +8,7 @@ Have a bunch of web projects on your local development computer, nestled in your
 
 Just `git clone` this project into your web project root, `sass assets/scss:assets/css`, make sure your local web server is turned on, and go to `http://localhost` in a browser.
 
-_Note: if you want to use a version that loads sites into an iframe, load up `http://localhost/?iframe=1` instead (or hit Ctrl-Alt-i to toggle)._
+_Note: if you want to use a version that loads sites into an iframe, load up `http://localhost/?iframe=1` instead (or hit Ctrl+Shift+Alt+i to toggle)._
 
 ![Localhost Index Iframe](assets/img/localhost_index_iframe.png "Localhost Index Iframe")
 
