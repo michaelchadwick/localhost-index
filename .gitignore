@@ -3,3 +3,4 @@ testsite*
 .lhignore
 dandelion.yml
 port_labels.php
+Rakefile
