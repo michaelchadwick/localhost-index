@@ -39,7 +39,7 @@ function make_dir_links($useIframe = false) {
   echo "\t<h2>~/Sites</h2>";
 
   if (sizeof($files) > 0) {
-    echo "\n\t\t<dl>\n";
+    echo "\n\t\t<dl class='sites-list'>\n";
     $i = 0;
 
     foreach ($files as $file) {
@@ -93,28 +93,48 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
         include $PORTS_LABELS_FILENAME; // custom port => app name mappings
       }
 
-      echo "\n\t\t\t<dl>\n";
+      echo "\n\t\t\t<dl class='ports-list'>\n";
       $i = 0;
       foreach ($ports as $port) {
         if ($port != "" && $port != $_SERVER['SERVER_PORT']) {
-          $id = "port_" . $i;
-          $link = "http://localhost:" . $port;
+          $id = "port_$i";
+          $link = "http://localhost:$port";
+          $project = '';
+          $tech = '';
           $name = '';
 
           if (defined('PORTS_LABELS')) {
             $labels = constant('PORTS_LABELS');
+
             if (array_key_exists($port, $labels)) {
-              $name = " ($labels[$port])";
+              $project = isset($labels[$port]['project']) ? $labels[$port]['project'] : '???';
+              $tech = isset($labels[$port]['tech']) ? $labels[$port]['tech'] : '???';
+
+              $name = "<span class='project'>$project</span> | <span class='tech'>$tech</span>";
             }
           }
 
           $html  = "\t\t\t\t";
           $html .= "<dt class='port'>";
 
-          if ($useIframe) {
-            $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' data-click='false' href='#'>:" . $port . $name . "</a>";
-          } else {
-            $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' href='$link'>:" . $port . $name . "</a>";
+          if ($useIframe) { // iframe
+            $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' data-click='false' href='#'>Port: <span class='port'>$port</span>";
+
+            if (!empty($project)) {
+              $html .= "<br />Proj: <span class='project'>$project</span>";
+            }
+
+            if (!empty($tech)) {
+              $html .= "<br />Tech: <span class='tech'>$tech</span>";
+            }
+
+            $html .= '</a>';
+          } else { // no iframe
+            $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' href='$link'>:$port";
+            if (!empty($name)) {
+              $html .= " ($name)";
+            }
+            $html .= '</a>';
           }
 
           $html .= "</dt>\n";

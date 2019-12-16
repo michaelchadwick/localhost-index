@@ -1,11 +1,11 @@
 <?php header('X-Frame-Options: ALLOW-FROM http://localhost/'); ?>
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
   <title>Localhost Index</title>
-  <link href='assets/css/index.css' rel='stylesheet' type='text/css'>
-  <script src='assets/js/debug.js' type='text/javascript'></script>
-  <script src='assets/js/index.js' type='text/javascript'></script>
+  <link href="assets/css/index.css" rel="stylesheet" type="text/css">
+  <script src="assets/js/debug.js" type="text/javascript"></script>
+  <script src="assets/js/index.js" type="text/javascript"></script>
 </head>
 <body>
   <?php
@@ -15,17 +15,17 @@
   ?>
 
   <header <?php if ($useIframe) echo 'style="position: absolute"'; ?>>
-    <h1><a href='http://localhost'>Localhost Index</a></h1>
+    <h1><a href="http://localhost">Localhost Index</a></h1>
   </header>
 
   <div id="container">
 
-  <?php
+    <?php
     if ($useIframe) {
-  ?>
-  <aside id='sidebar'>
-    <div id='dragbar'></div>
-  <?php
+    ?>
+    <aside id="sidebar<?php $useIframe ? 'iframe-mode' : '' ?>">
+      <div id="dragbar"></div>
+    <?php
     }
 
     include('funcs.php');
@@ -33,26 +33,26 @@
     make_port_links($useIframe, $usePortCheck, $usePortFilter);
 
     if ($useIframe) {
-  ?>
-  </aside>
+    ?>
+    </aside>
 
-  <div id='main'>
-    <div id='iframe_src'></div>
-    <iframe id='site_contents' scrolling='no' frameborder='0' src=''></iframe>
-  </div>
-  <?php
+    <div id="main">
+      <div id="iframe_src"></div>
+      <iframe id="site_contents" scrolling="no" frameborder="0" src=""></iframe>
+    </div>
+    <?php
     }
-  ?>
+    ?>
 
-  </container>
+  </div>
 
   <footer>
     <?php if ($useIframe) { ?>
-    <span>[<a href='?iframe=0'>switch to standard</a>]</span>
+    <span>[<a href="?iframe=0">switch to standard</a>]</span>
     <?php } else { ?>
-    <span>[<a href='?iframe=1'>switch to iframe</a>]</span>
+    <span>[<a href="?iframe=1">switch to iframe</a>]</span>
     <?php } ?>
-    <span class='toggle-text'>(ctrl+shift+alt+i to toggle)</span>
+    <span class="toggle-text">(ctrl+shift+alt+i to toggle)</span>
   </footer>
 
 </body>
