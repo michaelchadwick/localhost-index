@@ -99,7 +99,9 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
         if ($port != "" && $port != $_SERVER['SERVER_PORT']) {
           $id = "port_$i";
           $link = "http://localhost:$port";
+          $logo = '';
           $project = '';
+          $subproject = '';
           $tech = '';
           $name = '';
 
@@ -107,10 +109,23 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
             $labels = constant('PORTS_LABELS');
 
             if (array_key_exists($port, $labels)) {
+              $imgdir = opendir("./assets/img/_logos");
+
               $project = isset($labels[$port]['project']) ? $labels[$port]['project'] : '???';
+              $subproject = isset($labels[$port]['subproject']) ? $labels[$port]['subproject'] : '???';
               $tech = isset($labels[$port]['tech']) ? $labels[$port]['tech'] : '???';
 
-              $name = "<span class='project'>$project</span> | <span class='tech'>$tech</span>";
+              while(($img=readdir($imgdir)) !== false) {
+                $imgName = explode('.', $img);
+
+                if ($imgName[0] == $tech) {
+                  $logo = $img;
+
+                  break;
+                }
+              }
+
+              $name = "<span class='project'>$project</span> | <span class='subproject'>$subproject</span>";
             }
           }
 
@@ -125,15 +140,21 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
             }
 
             if (!empty($tech)) {
-              $html .= "<br />Tech: <span class='tech'>$tech</span>";
+              $html .= "<br />subproject: <span class='subproject'>$subproject</span>";
             }
 
             $html .= '</a>';
           } else { // no iframe
+            if ($logo !== '') {
+              $html .= "<img class='tech-logo' src='./assets/img/_logos/$logo' width='20' height='20' />";
+            }
+
             $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' href='$link'>:$port";
+
             if (!empty($name)) {
               $html .= " ($name)";
             }
+
             $html .= '</a>';
           }
 

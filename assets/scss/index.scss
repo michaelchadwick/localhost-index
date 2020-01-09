@@ -80,6 +80,17 @@ dl {
 
 // list of links
 dt {
+  height: 38px;
+
+  img {
+    &.tech-logo {
+      background: #1a8bbd77;
+      float: left;
+      margin: 0 3px 0 0;
+      padding: 8px 8px 9px;
+    }
+  }
+
   a {
     border-bottom: 1px solid darken($color-default, 10%);
     color: lighten($color-default-reverse, 5%);
@@ -109,7 +120,7 @@ dt {
         font-weight: 1000;
       }
 
-      &.tech {
+      &.subproject {
         color: #feffcb;
         font-weight: 300;
       }
@@ -190,15 +201,13 @@ header {
       span {
         &.port,
         &.project,
-        &.tech {
+        &.subproject {
           font-size: 0.85em;
         }
       }
     }
   }
 }
-
-
 
 #dragbar {
   background-color: $color-default;
