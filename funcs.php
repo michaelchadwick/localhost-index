@@ -40,10 +40,10 @@ function make_dir_links($useIframe = false) {
 
   if (sizeof($files) > 0) {
     echo "\n\t\t<dl class='sites-list'>\n";
-    $i = 0;
+    $dir_index = 0;
 
     foreach ($files as $file) {
-      $id = "dir_" . $i;
+      $id = "dir_" . $dir_index++;
       $link = "/" . $file;
 
       $html  = "\t\t\t\t";
@@ -58,7 +58,6 @@ function make_dir_links($useIframe = false) {
       $html .= "</dt>\n";
 
       echo $html;
-      $i++;
     }
 
     echo "\t\t</dl>\n";
@@ -86,6 +85,7 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
 
     // Make <dt>s if there are any ports
     echo "\t\t<h2>Ports</h2>";
+
     if ($ports) {
       $PORTS_LABELS_FILENAME = 'port_labels.php';
 
@@ -94,16 +94,20 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
       }
 
       echo "\n\t\t\t<dl class='ports-list'>\n";
-      $i = 0;
+
+      $port_index = 0;
+
       foreach ($ports as $port) {
         if ($port != "" && $port != $_SERVER['SERVER_PORT']) {
-          $id = "port_$i";
+          $id = "port_" . $port_index++;
           $link = "http://localhost:$port";
           $logo = '';
           $project = '';
           $subproject = '';
           $tech = '';
+          $ignore = FALSE;
           $name = '';
+          $html = '';
 
           if (defined('PORTS_LABELS')) {
             $labels = constant('PORTS_LABELS');
@@ -114,8 +118,9 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
               $project = isset($labels[$port]['project']) ? $labels[$port]['project'] : '???';
               $subproject = isset($labels[$port]['subproject']) ? $labels[$port]['subproject'] : '???';
               $tech = isset($labels[$port]['tech']) ? $labels[$port]['tech'] : '???';
+              $ignore = isset($labels[$port]['ignore']) ? $labels[$port]['ignore'] : FALSE;
 
-              while(($img=readdir($imgdir)) !== false) {
+              while (($img = readdir($imgdir)) !== FALSE) {
                 $imgName = explode('.', $img);
 
                 if ($imgName[0] == $tech) {
@@ -129,41 +134,43 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
             }
           }
 
-          $html  = "\t\t\t\t";
-          $html .= "<dt class='port'>";
+          if (!$ignore) {
+            $html  = "\t\t\t\t";
+            $html .= "<dt class='port'>";
 
-          if ($useIframe) { // iframe
-            $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' data-click='false' href='#'>Port: <span class='port'>$port</span>";
+            if ($useIframe) { // iframe
+              $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' data-click='false' href='#'>Port: <span class='port'>$port</span>";
 
-            if (!empty($project)) {
-              $html .= "<br />Proj: <span class='project'>$project</span>";
+              if (!empty($project)) {
+                $html .= "<br />Proj: <span class='project'>$project</span>";
+              }
+
+              if (!empty($tech)) {
+                $html .= "<br />subproject: <span class='subproject'>$subproject</span>";
+              }
+
+              $html .= '</a>';
+            } else { // no iframe
+              if ($logo !== '') {
+                $html .= "<img class='tech-logo' src='./assets/img/_logos/$logo' width='20' height='20' />";
+              }
+
+              $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' href='$link'>:$port";
+
+              if (!empty($name)) {
+                $html .= " ($name)";
+              }
+
+              $html .= '</a>';
             }
 
-            if (!empty($tech)) {
-              $html .= "<br />subproject: <span class='subproject'>$subproject</span>";
-            }
+            $html .= "</dt>\n";
 
-            $html .= '</a>';
-          } else { // no iframe
-            if ($logo !== '') {
-              $html .= "<img class='tech-logo' src='./assets/img/_logos/$logo' width='20' height='20' />";
-            }
-
-            $html .= "<a data-url='$link' alt='$link' title='$link' id='$id' href='$link'>:$port";
-
-            if (!empty($name)) {
-              $html .= " ($name)";
-            }
-
-            $html .= '</a>';
+            echo $html;
           }
-
-          $html .= "</dt>\n";
-
-          echo $html;
-          $i++;
         }
       }
+
       echo "\t\t\t</dl>\n";
     } else {
       echo "<article><p>No web ports found.</p></article>";
@@ -174,7 +181,7 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
 /**
  * Passes lhignore
  *
- * Checks a subdirectory to make sure it passes the black list, if there is one
+ * Checks a subdirectory to make sure it passes the ignore list, if there is one
  *
  * @param string $name Domain name to check
  * @param array $lhignore Array of domains to check against
