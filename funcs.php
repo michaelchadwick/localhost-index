@@ -75,8 +75,9 @@ function make_dir_links($useIframe = false) {
  * @param boolean $useIframe Should we use an iframe to display link?
  * @param boolean $checkPorts Should we check ports at all?
  * @param boolean $useFilter Should we use a process filter?
+ * @param int     $maxPortNumber What's the highest port number to check?
  */
-function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter = false) {
+function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter = false, $maxPortNumber = 99999) {
   if ($checkPorts) {
     $http_services = 'httpd\|vpnkit\|java\|nc\|node\|ng\|php\|ruby\|hugo\|docker\|com.docker\|com.docke';
     $filter = $usePortFilter ? " | grep '" . $http_services . "'" : "";
@@ -134,7 +135,7 @@ function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter
             }
           }
 
-          if (!$ignore) {
+          if (!$ignore && (intval($port) < $maxPortNumber)) {
             $html  = "\t\t\t\t";
             $html .= "<dt class='port'>";
 

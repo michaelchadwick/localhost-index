@@ -30,7 +30,7 @@
 
     include('funcs.php');
     make_dir_links($useIframe);
-    make_port_links($useIframe, $usePortCheck, $usePortFilter);
+    make_port_links($useIframe, $usePortCheck, $usePortFilter, 32773);
 
     if ($useIframe) {
     ?>
