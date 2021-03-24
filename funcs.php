@@ -79,7 +79,7 @@ function make_dir_links($useIframe = false) {
  */
 function make_port_links($useIframe = false, $checkPorts = false, $usePortFilter = false, $maxPortNumber = 99999) {
   if ($checkPorts) {
-    $http_services = 'httpd\|vpnkit\|java\|nc\|node\|ng\|php\|ruby\|hugo\|zola\|docker\|com.docker\|com.docke';
+    $http_services = 'httpd\|vpnkit\|java\|nc\|node\|ng\|php\|ruby\|hugo\|zola\|crystal\|docker\|com.docker\|com.docke';
     $filter = $usePortFilter ? " | grep '" . $http_services . "'" : "";
     $lsof_cmd = "lsof -i -n -P" . $filter . " | grep LISTEN | egrep -o -E ':[0-9]{2,5}' | cut -f2- -d: | sort -n | uniq";
     $ports = explode("\n", shell_exec($lsof_cmd));
